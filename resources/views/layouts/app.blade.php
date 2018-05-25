@@ -11,10 +11,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="{{ asset('css/custom.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,6 +86,7 @@
 
         <!-- Heading -->
         <div class="row">
+            <div style='margin-top:30px'></div>
         @yield('content')
         </div>
         <!-- /.row -->
@@ -121,16 +122,16 @@
  <!-- Footer End -->
 	
     <!-- jQuery -->
-    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="{{ asset('js/jquery-1.11.3.min.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 	
 	<!-- IE10 viewport bug workaround -->
-	<script src="js/ie10-viewport-bug-workaround.js"></script>
+	<script src="{{asset('js/ie10-viewport-bug-workaround.js')}}"></script>
 	
 	<!-- Placeholder Images -->
-	<script src="js/holder.min.js"></script>
+	<script src="{{ asset('js/holder.min.js')}}"></script>
 	
 </body>
 
