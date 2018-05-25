@@ -23,7 +23,14 @@
 #FRONT PAGES
 
 Route::get('/', 'WelcomeController@index')->name('index');
+
 Route::prefix('welcome')->group(function () {
+
+
+
+});
+
+Route::prefix('admin')->group(function () {
 
 
 
