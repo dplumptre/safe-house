@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -71,12 +71,12 @@ class RegisterController extends Controller
         return redirect('welcome.notification');
 
 
-        
+        return back();
 
-      //  $this->guard()->login($user);
+       // $this->guard()->login($user);
 
        // return $this->registered($request, $user)
-                      //  ?: redirect($this->redirectPath());
+          //              ?: redirect($this->redirectPath());
     }
 
 
