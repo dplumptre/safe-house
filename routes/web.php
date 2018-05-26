@@ -24,11 +24,26 @@
 
 Route::get('/', 'WelcomeController@index')->name('index');
 
-Route::prefix('welcome')->group(function () {
+// Route::prefix('welcome')->group(function () {
+
+// Route::get('/notification', 'WelcomeController@notification')->name('notification');
 
 
 
+// });
+
+
+
+
+
+Route::group(['prefix' => 'welcome'], function () {
+
+    Route::get('/notification', 'WelcomeController@notification')->name('notification');
 });
+
+
+
+
 
 Route::prefix('admin')->group(function () {
 

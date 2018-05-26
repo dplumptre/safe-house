@@ -13,4 +13,9 @@ class WelcomeController extends Controller
     {
         return view('welcome.index');
     }
+
+    public function notification()
+    {
+        return view('welcome.notification');
+    }
 }

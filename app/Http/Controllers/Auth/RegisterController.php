@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+
+
 
 class RegisterController extends Controller
 {
@@ -62,6 +65,10 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
+
+        // $request->Session()->flash('message.content', 'Registration was sucessful! Your account will be activated after 24 hours');
+        // $request->session()->flash('message.level', 'success');
+        return redirect('welcome.notification');
 
 
         
