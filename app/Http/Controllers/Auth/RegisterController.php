@@ -66,6 +66,10 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
+        // $request->Session()->flash('message.content', 'Registration was sucessful! Your account will be activated after 24 hours');
+        // $request->session()->flash('message.level', 'success');
+        return redirect('welcome/notification');
+
 
         return back();
 
