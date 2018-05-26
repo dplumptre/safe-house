@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -64,12 +67,12 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
 
-        
+        return back();
 
-      //  $this->guard()->login($user);
+       // $this->guard()->login($user);
 
        // return $this->registered($request, $user)
-                      //  ?: redirect($this->redirectPath());
+          //              ?: redirect($this->redirectPath());
     }
 
 
