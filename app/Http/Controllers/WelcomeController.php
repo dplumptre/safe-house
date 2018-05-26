@@ -16,6 +16,19 @@ class WelcomeController extends Controller
 
     public function notification()
     {
-        return view('welcome.notification');
+        return view('welcome/notification');
     }
+
+
+    public function access_denied()
+    {
+        return view('welcome/access_denied');
+    }
+
+   
+
+
+
+
+   
 }

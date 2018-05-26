@@ -68,7 +68,7 @@ class RegisterController extends Controller
 
         // $request->Session()->flash('message.content', 'Registration was sucessful! Your account will be activated after 24 hours');
         // $request->session()->flash('message.level', 'success');
-        return redirect('welcome.notification');
+        return redirect('welcome/notification');
 
 
         return back();

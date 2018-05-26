@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use Cache;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,4 +46,12 @@ class User extends Authenticatable
     }
 
 
-}
+
+
+    //Check if User is online
+    public function isOnline(){
+        return Cache::has('user-is-online-' . $this->id);
+    }
+
+
+}   //END

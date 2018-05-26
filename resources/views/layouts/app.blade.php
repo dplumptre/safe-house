@@ -55,21 +55,33 @@
                     <li>
                         <a href="#">Products</a>
                     </li>
+
+                @if (Auth::user() && Auth::user()->status == "1" && Auth::user()->role_slug == "admin")
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions + <span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="about-us">
-							<li><a href="#">Engage</a></li>
+							<li><a href="{{ route('all_users')}}">View all users</a></li>
 							<li><a href="#">Pontificate</a></li>
 							<li><a href="#">Synergize</a></li>
 						</ul>
 					</li>
+                @endif
                 </ul>
 
 				<!-- Right Menu -->
 				<div class="navbar-form navbar-right" role="search">
 					<div class="form-group">
-						Welcome User | Logout
+						<a href="{{ route('login')}}"> Login </a> | <a href="{{ route('register')}}">Register</a>
 					</div>
+
+
+<form action="{{ route('logout')}}"  method='POST'>
+{{ csrf_field() }}
+<button type='submit'>Logout</button>
+
+</form>
+
+                    
 				</div>
                 <!-- Right Menu End -->
 
