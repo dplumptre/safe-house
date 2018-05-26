@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class Activated
 {
@@ -17,17 +17,16 @@ class Activated
     public function handle($request, Closure $next)
     {
 
+      
+
+        $user = $request->user();
 
 
-
-        $user = Auth::user();
-
-    // dd($user);
-
+        dd($user);
 
         if($user->status == 0){
 
-            return redirect('login');
+            return redirect('wooo');
 
         }
 
