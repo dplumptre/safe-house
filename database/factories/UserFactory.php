@@ -23,3 +23,31 @@ $factory->define(App\User::class, function (Faker $faker) {
 });
 
 
+$factory->define(App\Transaction::class, function (Faker $faker) {
+ 
+
+
+    // return [
+    //     'transaction' => 'Credit : '.$faker->name,
+    //     'debit' => 0,
+    //     'credit' => $faker->numberBetween(2000,400000), // secret
+    //     'user_id' => 2,
+    // ];
+
+    return [
+        'transaction' => 'Debit:  '.$faker->name,
+        'credit' => 0,
+        'debit' => $faker->numberBetween(2000,400000), // secret
+        'user_id' => 2,
+    ];
+
+ 
+
+
+
+
+
+
+
+});
+

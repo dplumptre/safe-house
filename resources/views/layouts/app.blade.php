@@ -49,12 +49,6 @@
                     <li class="active">
                         <a href="#">Home</a>
                     </li>
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Products</a>
-                    </li>
 
                 @if (Auth::user() && Auth::user()->status == "1" && Auth::user()->role_slug == "admin")
 					<li class="dropdown">
@@ -75,11 +69,13 @@
 					</div>
 
 
+<div class="form-group">
 <form action="{{ route('logout')}}"  method='POST'>
 {{ csrf_field() }}
 <button type='submit'>Logout</button>
 
 </form>
+</div>
 
                     
 				</div>

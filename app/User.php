@@ -47,6 +47,25 @@ class User extends Authenticatable
 
 
 
+    public function isActivated($username)
+    {
+
+       $user = $this->where('username','=',$username)
+                      ->where('status','=','1')->first();
+
+       if($user){
+           return true;
+       }else{
+           return false;
+       }
+
+        
+    }
+
+
+
+
+
 
     //Check if User is online
     public function isOnline(){

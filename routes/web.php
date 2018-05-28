@@ -55,3 +55,11 @@ Route::group(['prefix' => 'admin'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'home'], function () {
+
+    Route::get('accountsummary', 'HomeController@ac')->name('ac');
+    Route::get('transfer', 'HomeController@transfer')->name('home.transfer');
+    Route::get('profile', 'HomeController@profile')->name('home.profile');
+    Route::post('transfer', 'HomeController@posttransfer')->name('home.posttransfer');
+    //Route::get('', 'HomeController@ac')->name('ac');
+});
