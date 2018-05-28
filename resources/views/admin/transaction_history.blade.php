@@ -38,8 +38,8 @@
                         <td>{{$rows = $rows + 1 }}</td>
                         <td> {{ $transaction->user->username }}</td>
                         <td>{{ $transaction->user->name }} </td>
-                        <td>  <?php echo number_format($transaction->debit, 2); ?></td>
-                        <td>  <?php echo number_format($transaction->credit, 2); ?></td>
+                        <td class="text-danger">  - ₦ <?php echo number_format($transaction->debit, 2); ?></td>
+                        <td>  ₦ <?php echo number_format($transaction->credit, 2); ?></td>
                         <td>{{ $transaction->transaction }} </td>
     <td> <small>{{ date('d-M-Y m:s', strtotime($transaction->created_at)) }} </small></td>
 
@@ -50,8 +50,8 @@
                                         <th>Total</th>
                                         <th></th>
                                         <th></th>
-                                        <th><h5 class="text-danger"> ₦ <?php echo number_format($total_debit, 2); ?></h5></th>
-                                        <th><h5 class="text-success"> ₦ <?php echo number_format($total_credit, 2); ?></h5></th>
+                                        <th><h4 class="text-danger"> ₦ <?php echo number_format($total_debit, 2); ?></h4></th>
+                                        <th><h4 class="text-success"> ₦ <?php echo number_format($total_credit, 2); ?></h4></th>
                                         <th></th>
                                         <th></th>
                                     </tr>

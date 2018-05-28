@@ -60,8 +60,20 @@ $account_balance = $total_credit - $total_debit;
 
 
     public function verify_account(Request $request) {
+        $this->validate($request, [
+            'account_no' => 'required|integer:10'
+            ]);
         $account_no = $request->account_no;
         $users = User::where('username', '=', $account_no)->first();
+
+        $check = $users->count();
+
+        if ($check > 0) {
+            return view('admin/make_transfer', compact('users'));
+        }
+        else{
+            return "Account number not found";
+        }
         // 
         // $verify_account = Transaction::with('user')->orderBy('user_id')->groupBy('user_id')->get();
         return view('admin/make_transfer', compact('users'));

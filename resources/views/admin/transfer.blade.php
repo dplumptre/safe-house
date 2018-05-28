@@ -21,7 +21,7 @@
 
     <div class="form-group row">
       <label>Account No</label>
-      <input id="account_no" type="text" name="account_no" value="" >
+      <input id="account_no" type="text" name="account_no" placeholder="Enter account no">
       <button type="submit" class="btn btn-primary btn-xs">Verify Account</button>
     </div>
     

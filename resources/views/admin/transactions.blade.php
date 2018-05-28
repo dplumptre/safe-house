@@ -23,19 +23,33 @@
                                         <th>S/N</th>
                                         <th>Account No</th>
                                         <th>Name</th>
+                                        <th>Balance</th>
                                         <th>View History</th>
                                         <th>Credit</th>
                                         <th>Debit</th>
                                     </tr>
                                 </thead>
-                                  <?php $rows = 0; ?> 
+                                  <?php 
+Use App\Transaction;
+                                  $rows = 0; 
+function account_balance($id) {
+    $transactions = Transaction::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+    $total_credit = $transactions->sum('credit');
+    $total_debit  = $transactions->sum('debit');
+    $account_balance = $total_credit - $total_debit;
+    return $account_balance;
+}
+
+
+                                  ?> 
                 <tbody>
             @foreach($users as $user)
                     <tr>
                         <td>{{$rows = $rows + 1 }}</td>
                         <td> <a href="/admin/transaction_history/{{$user->id}}"> {{ $user->username }}</a></td>
                         <td>{{ $user->name }} </td>
-                        <td>₦ </td>
+                        <td>₦ <?php echo account_balance($user->id) ;?> </td>
+                        <td> <a href="/admin/transaction_history/{{$user->id}}">View</a> </td>
                         <td><a href="/admin/credit_user/{{$user->id}}">Credit</a></td>
                         <td><a href="/admin/debit_user/{{$user->id}}">Debit</a></td>
                         
