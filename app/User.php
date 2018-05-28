@@ -40,7 +40,7 @@ class User extends Authenticatable
         return $this->hasOne('App\Detail');
     }
 
-    public function trasactions()
+    public function transactions()
     {
         return $this->hasMany('App\Transaction');
     }
