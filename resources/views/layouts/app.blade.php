@@ -60,11 +60,14 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions + <span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="about-us">
-							<li><a href="{{ route('all_users')}}">View all users</a></li>
-							<li><a href="#">Pontificate</a></li>
-							<li><a href="#">Synergize</a></li>
+                    <li><a href="{{ route('all_users')}}">View all users</a></li>
+					<li><a href="{{ route('transactions')}}">Perform Transaction</a></li>
+							
 						</ul>
 					</li>
+                    <li><a href="{{ route('all_users')}}">View all users</a></li>
+                    <li><a href="{{ route('transactions')}}">Perform Transaction</a></li>
+                    <li><a href="{{ route('transfer')}}">Transfer Fund</a></li>
                 @endif
                 </ul>
 
@@ -74,12 +77,13 @@
 						<a href="{{ route('login')}}"> Login </a> | <a href="{{ route('register')}}">Register</a>
 					</div>
 
-
+@if(Auth::user())
 <form action="{{ route('logout')}}"  method='POST'>
 {{ csrf_field() }}
 <button type='submit'>Logout</button>
 
 </form>
+@endif
 
                     
 				</div>
@@ -144,6 +148,33 @@
 	
 	<!-- Placeholder Images -->
 	<script src="{{ asset('js/holder.min.js')}}"></script>
+
+
+
+    <!-- JavaScripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="{{ URL::asset('assets/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+
+
+
+ <!-- DATATABLES    -->      
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
+
+        <script type="text/javascript">
+        $(document).ready(function() {
+        $('#myTable').DataTable( {
+        "scrollX": true,
+        "iDisplayLength": 25,
+        "lengthMenu": [ [20, 25, 50, -1], [20, 25, 50, "All"] ]
+        } );
+        } );
+        </script>
 	
 </body>
 

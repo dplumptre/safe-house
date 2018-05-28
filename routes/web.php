@@ -43,6 +43,26 @@ Route::group(['prefix' => 'welcome'], function () {
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/all_users', 'AdminController@all_users')->name('all_users');
+    Route::get('/transactions', 'AdminController@transactions')->name('transactions');
+    Route::get('/transaction_history/{id}', 'AdminController@transaction_history')->name('transaction_history');
+
+
+    Route::get('/transfer', 'AdminController@transfer')->name('transfer');
+    Route::post('/verify_account', 'AdminController@verify_account')->name('verify_account');
+	Route::post('/store_transfer', 'AdminController@store_transfer');
+
+
+    Route::get('/credit_user/{id}', 'AdminController@credit_user')->name('credit_user');
+	Route::post('/store_credit', 'AdminController@store_credit');
+
+    Route::get('/debit_user/{id}', 'AdminController@debit_user')->name('debit_user');
+	Route::post('/store_debit', 'AdminController@store_debit');
+
+ //    Route::post('/search', 'AdminController@search')->name('search');    
+ //    Route::get('/debit_user', 'AdminController@debit_user')->name('debit_user');
+	// Route::post('/debit_account', 'AdminController@debit_account');
+
+    Route::patch('/verify/{account_status}', 'AdminController@verify')->name('verify');
 });
 
 

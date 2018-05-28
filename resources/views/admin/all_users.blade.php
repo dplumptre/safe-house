@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+      <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+
 @extends('layouts.app')
 
 @section('title', 'Home page')
@@ -5,78 +8,16 @@
 
 
 
-<style>
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input {display:none;}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-</style>
-
-
-
-
-
 @section('content')
 <div class="container">
+
+    	@include('layouts.partials.errors')
+
     <div class="panel panel-default">
         <div class="panel-heading">ALL USERS </div>
             <div class="panel-body" align="center">
 
-                <div class="bs-example" data-example-id="hoverable-table"> 
-                	
-
-<table class="table table-hover">
+<table  id="myTable"  class="table table-hover" width="100%">
                                 <thead>
                                     <tr>
                                         <th>S/N</th>
@@ -84,19 +25,47 @@ input:checked + .slider:before {
                                         <th>Account No</th>
                                         <th>Email</th>
                                         <th>Reg Date</th>
+                                        <th>Account Status</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                   <?php $rows = 0; ?> 
-            @foreach($users as $user)
                 <tbody>
+            @foreach($users as $user)
                     <tr>
                         <td>{{$rows = $rows + 1 }}</td>
                         <td>{{ $user->name }} </td>
-                           <td> {{ $user->username }}</td>
+                        <td> {{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->created_at }} </td>
+
+
+<td>
+ @if($user->status == "1")
+    <span class="fa fa-icon fa-check-circle" style="color: green">
+    	Activated
+@else
+ <form class="form-inline" method="post" action="/admin/verify/{{$user->id}}">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
+
+        <div class="col-md-5">
+            <small>
+            	<div class="input-select">
+		            <select name="status">
+		            	<option selected="" value="">-- Select --</option>
+		                <option value="1">Activate</option>
+		                <option value="0">Pending</option>
+		            </select>
+		        </div>
+		    </small>
+        </div>
+        <div class="col-md-4" style="padding-left: 3px">
+			<button type="submit" class="btn btn-primary btn-xs">Save Changes</button>
+        </div>
+    </form>
+@endif
+</td>
                         <td> 
                             @if($user->isOnline())
                                 <li class="text-success">Online</li>
@@ -104,27 +73,13 @@ input:checked + .slider:before {
                                 <li  class="text-danger">Offline</li>
                             @endif
 	
-</td>
+						</td>
 
 
-<td>
-
-<form>
-<label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="status" value="1"> On
-</label>
-<label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="status" value="0" checked> Off
-</label>
-<button type="button" class="btn btn-primary btn-xs">Submit</button>
-  </form>  
-</td>
-
-
-                    </tr>
-                    
-                </tbody>
-            @endforeach
+    </tr>
+    
+@endforeach
+</tbody>
 </table>
 
 
@@ -137,33 +92,10 @@ input:checked + .slider:before {
     </div>
 </div>
 
-
-
 <script>
-	$('.btn-toggle').click(function() {
-    $(this).find('.btn').toggleClass('active');  
-    
-    if ($(this).find('.btn-primary').size()>0) {
-    	$(this).find('.btn').toggleClass('btn-primary');
-    }
-    if ($(this).find('.btn-danger').size()>0) {
-    	$(this).find('.btn').toggleClass('btn-danger');
-    }
-    if ($(this).find('.btn-success').size()>0) {
-    	$(this).find('.btn').toggleClass('btn-success');
-    }
-    if ($(this).find('.btn-info').size()>0) {
-    	$(this).find('.btn').toggleClass('btn-info');
-    }
-    
-    $(this).find('.btn').toggleClass('btn-default');
-       
-});
-
-$('form').submit(function(){
-	alert($(this["options"]).val());
-    return false;
-});
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 
 @endsection
