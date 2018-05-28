@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#">Home</a>
+                        <a href="/home">Home</a>
                     </li>
 
                 @if (Auth::user() && Auth::user()->status == "1" && Auth::user()->role_slug == "admin")
