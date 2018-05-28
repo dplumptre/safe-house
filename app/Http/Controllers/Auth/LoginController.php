@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\User;
+use Auth;
+
 
 class LoginController extends Controller
 {
@@ -36,4 +40,41 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+
+   
+
+    protected function attemptLogin(Request $request)
+    {
+      
+        $user = new User();
+  
+          if($user->isActivated($request->username) == false){
+
+            $request->session()->flash('message.content', 'Account not activated');
+            $request->session()->flash('message.level', 'danger');
+          }
+
+          return $this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
+            );   
+
+
+           return back();
+
+    }
+
+
+
+
+    public function username()
+    {
+        return 'username';
+    }
+
+
+  
+
+
 }
