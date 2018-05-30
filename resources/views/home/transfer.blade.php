@@ -43,17 +43,15 @@
 <form method="POST" action="{{ route('home.posttransfer') }}">
 @csrf
 
-<label for="">Beneficiary</label>
-<select class="form-control" name="beneficiary" id="">
-<option value=""></option>
-@foreach ($users as $user)
-@if($user->id == $authid)
-@else
-<option value="{{ $user->id}}"> {{ $user->name}}</option>
-@endif
-@endforeach
-</select>
 
+
+<div class="well">
+<label for="">Beneficiary</label>
+<p>{{ $users->name}}</p>
+<p>{{ $users->username}}</p>
+</div>
+
+<input type="hidden" class="form-control" value="{{ $users->id}}" name="beneficiary">
  <label for="">Amount</label>
  <input type="text" class="form-control" name="amount">
 

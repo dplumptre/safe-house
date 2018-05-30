@@ -61,6 +61,19 @@ class HomeController extends Controller
     }
 
 
+    public function v_a() {
+        return view('home.verify_account');
+    }
+
+
+
+    public function post_v_a(Request $request) {
+        $account_no = $request->account_no;
+        $users = User::where('username', '=', $account_no)->first();
+        return view('home/transfer', compact('users'));
+    }
+
+
     public function posttransfer(Request $request)
     {
 
