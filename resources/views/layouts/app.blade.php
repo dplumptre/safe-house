@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet">
 
     <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
     <link href="{{ asset('css/custom.css')}}" rel="stylesheet">
@@ -40,14 +40,14 @@
                 </button>
                 <a class="navbar-brand" href="#">
                 	<span class="glyphicon glyphicon-fire"></span> 
-                	Logo
+                	<img src="{{ asset('img/acornlogo.png')}}" alt="">
                 </a>
             </div>
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="/home">Home</a>
+                        <a href="/home">Dashboard</a>
                     </li>
 
                 @if (Auth::user() && Auth::user()->status == "1" && Auth::user()->role_slug == "admin")
@@ -70,6 +70,10 @@
 					<div class="form-group">
 						<a href="{{ route('login')}}"> Login </a> | <a href="{{ route('register')}}">Register</a>
 					</div>
+
+
+
+
 
 
 <div class="form-group">

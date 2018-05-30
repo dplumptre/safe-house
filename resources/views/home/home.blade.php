@@ -24,7 +24,6 @@
 </div>
 
 <div class="col-md-8">
-  
-   <strong>Account Balance: N {{ $bal}}</strong>
-           </div>
+	<strong>Account Balance: N {{ $bal}}</strong>
+</div>
 @endsection
