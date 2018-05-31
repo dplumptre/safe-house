@@ -90,7 +90,9 @@
     <div class="navbar-collapse nav-main-collapse collapse">
       <div class="container">
         <nav class="nav-main mega-menu">
+       
           <ul class="nav nav-pills nav-main" id="mainMenu">
+          @guest
             <li class="dropdown mega-menu-item mega-menu-fullwidth active"> <a class="dropdown-toggle" href="#"> Personal <i class="fa fa-angle-down"></i> </a>
               <ul class="dropdown-menu">
                 <li>
@@ -145,6 +147,7 @@
               </ul>
             </li>
             <li class="dropdown mega-menu-item mega-menu-fullwidth"> <a class="dropdown-toggle" href="#"> Business <i class="fa fa-angle-down"></i> </a>
+         
               <ul class="dropdown-menu">
                 <li>
                   <div class="mega-menu-content">
@@ -230,15 +233,24 @@
              @endif
               </ul>
             </li>
-            <li><a href="#">Branches &amp; ATMs</a></li>
+           
             <li><a href="{{ route('login')}}" ><i class="fa fa-lock"></i> <span class="long-word">Online Banking Login</span><span class="short-word">Login</span></a></li>
             <li><a href="{{ route('register')}}">Register</a></li>
-<div class="form-group">
-<form action="{{ route('logout')}}"  method='POST'>
-{{ csrf_field() }}
-<button type='submit'>Logout</button>
+            @endguest
+            @auth
+                    <li >
+    
+                        <a  href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
 
-</form>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+                @endauth
           </ul>
         </nav>
       </div>

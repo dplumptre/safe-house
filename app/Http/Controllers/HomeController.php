@@ -124,18 +124,56 @@ return redirect('home/accountsummary');
 
     }
 
+/*
+profile 
+
+&
+
+Pictures
 
 
+*/
 
-    public function profile()
+    public function up()
     {
-     
-      return view('home.profile');
+    $user = $this->loggedin_user();  
+    return view('home.update_profile',compact('user'));
+    }
+
+
+
+    public function e_i()
+    {
+      $user = $this->loggedin_user();
+      return view('home.edit_idcard',compact('user'));
+    }
+
+
+    public function e_pic()
+    {
+      $user = $this->loggedin_user();  
+      return view('home.edit_picture',compact('user'));
     }
 
 
 
 
+    public function p_e_i()
+    {
+      return view('home.edit_idcard',compact('user'));
+    }
+
+
+    public function p_e_pic()
+    {
+      return view('home.edit_picture',compact('user'));
+    }
+
+
+    public function p_e_pro()
+    {
+      return view('home.edit_profile',compact('user'));
+    }
 
 
 

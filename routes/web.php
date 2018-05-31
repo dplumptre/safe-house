@@ -83,6 +83,20 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'home'], function () {
 
+
+
+    Route::get('edit_idcard',  'HomeController@e_i')->name('home.e_i');
+    Route::get('edit_picture', 'HomeController@e_pic')->name('home.e_pic');
+    Route::get('update_profile', 'HomeController@up')->name('home.up');
+
+
+    Route::get('edit_profile', 'HomeController@e_profile ')->name('home.e_pro');
+
+    Route::post('edit_idcard',  'HomeController@p_e_i')->name('post.e_i');
+    Route::post('edit_picture', 'HomeController@p_e_pic')->name('post.e_pic');
+    Route::post('edit_profile', 'HomeController@p_e_pro')->name('post.e_pro');
+
+
     Route::get('accountsummary', 'HomeController@ac')->name('ac');
     Route::get('transfer', 'HomeController@transfer')->name('home.transfer');
     Route::get('profile', 'HomeController@profile')->name('home.profile');

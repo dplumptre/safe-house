@@ -15,7 +15,7 @@
         <div class="col-md-6">
           <div class="toggle" data-plugin-toggle data-plugin-options='{ "isAccordion": true }'>
            <section class="toggle active">
-              <label>Transfer</label>
+              <label>Edit ID Card</label>
               <div class="toggle-content">
                 <div class="box-typical">
                 @if (count($errors) > 0)
@@ -28,16 +28,31 @@
     </div>
 @endif       
 
-                <form method="post" action="{{ route('home.post_v_a')}}">
-                {{ csrf_field() }}
-            
-                <div class="form-group row">
-                  <label>&nbsp;Account No</label>
-                  <input id="account_no" type="text" name="account_no" value="" >
-                  <button type="submit" class="btn btn-primary btn-xs"> Verify Account</button>
-                </div>
-                
-              </form>
+               
+
+<form class="form-horizontal"  enctype="multipart/form-data" method="post" action="">
+ {{ csrf_field() }}
+
+<div class="form-group">
+    <label class="control-label col-md-2">Picture</label>
+          <div class="col-sm-5">
+          <input  class="form-control" name="picture" type="file" id="file">
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+         <input type="submit" name="create" value="Upload ID Card" class="btn btn-primary btn-xs" />
+     </div>
+    </div>
+</form>
+
+
+
+
+
                   </div></div>
             </section>
           </div>
