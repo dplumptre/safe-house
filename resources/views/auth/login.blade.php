@@ -44,6 +44,17 @@
                     <label>Account ID</label>
                     <input type="username" value="{{ old('username') }}" data-msg-required="Please enter your name." maxlength="10" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" id="username" required autofocus>
 
+
+
+                <h4 class="short">Online Banking Login</h4>
+     <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+              <div class="row">
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label>Account ID</label>
+                    <input type="username" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
                                 @if ($errors->has('username'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('username') }}</strong>
@@ -92,3 +103,4 @@
     </div>
 </div>
 @endsection
+

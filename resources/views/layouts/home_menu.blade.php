@@ -12,9 +12,9 @@
                     <p> <a href="{{ route('home')}}"><i class="fa fa-binoculars"></i>  Dashboard</a> </p>
                     <p> <a href="{{ route('ac')}}"><i class="fa fa-cloud-download"></i> Account summany </a> </p>
                     <p> <a href="{{ route('home.v_a')}}" > <i class="fa fa-cloud-download"></i> Transfer Funds</a> </p>
-                    <p> <a href="{{ route('home.profile')}}" > <i class="fa fa-cloud-download"></i> User Management</a> </p>
-                    <p> <a href="#"> <i class="fa fa-binoculars"></i> Find a branch near you</a> </p>
-                    <p> <a href="#"> <i class="fa fa-binoculars"></i> Help Center</a> </p>
+                    <p> <a href="{{ route('home.up')}}"> <i class="fa fa-binoculars"></i> Edit Profile</a> </p>
+                    <p> <a href="{{ route('home.e_i')}}"> <i class="fa fa-binoculars"></i> Edit Id Card</a></p>
+                    <p> <a href="{{ route('home.e_pic')}}"> <i class="fa fa-binoculars"></i> Edit Picture</a> </p>
                   </div>
                   <div class="tab-pane" id="recentPosts">
                     <ul class="list-unstyled">

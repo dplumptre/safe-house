@@ -15,7 +15,7 @@
         <div class="col-md-6">
           <div class="toggle" data-plugin-toggle data-plugin-options='{ "isAccordion": true }'>
            <section class="toggle active">
-              <label>Transfer</label>
+              <label>Edit Profile</label>
               <div class="toggle-content">
                 <div class="box-typical">
                 @if (count($errors) > 0)
@@ -30,11 +30,25 @@
 
                 <form method="post" action="{{ route('home.post_v_a')}}">
                 {{ csrf_field() }}
-            
-                <div class="form-group row">
-                  <label>&nbsp;Account No</label>
-                  <input id="account_no" type="text" name="account_no" value="" >
-                  <button type="submit" class="btn btn-primary btn-xs"> Verify Account</button>
+                <div class="form-group row" style="padding:10px;">
+
+
+ <label for="">Mobile</label>
+ <input type="text" class="form-control" name="mobile">
+
+ <label for="">SSN</label>
+ <input type="text" class="form-control" name="ssn">
+
+ <label for="">Date of Birth</label>
+ <input type="text" class="form-control" name="dob">
+
+ <label for="">Employment Status</label>
+ <input type="text" class="form-control" name="employment_status">
+
+ <label for="">Address</label>
+<textarea name="address" id="" class="form-control" cols="30" rows="10"></textarea>
+
+                  <button type="submit" class="btn btn-primary btn-xs">Edit Profile</button>
                 </div>
                 
               </form>
