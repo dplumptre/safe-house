@@ -20,7 +20,7 @@
 
         <div class="col-md-7">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome, {{Auth::user()->name}}</div>
+                <div class="panel-heading">Welcome</div>
 
                <div style="padding: 40px;  "> </div>
 
