@@ -5,7 +5,7 @@
 
 
 @section('content')
-<div class="container">
+<div class="container" style="padding-top: 50px;">
             <div class="panel panel-default">
                 <div class="panel-heading">STATUS </div>
 

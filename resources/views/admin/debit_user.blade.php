@@ -7,88 +7,94 @@
 
 
 @section('content')
-<div class="container">
+<div class="container" style="padding-top:50px;">
 
     	@include('layouts.partials.errors')
 
-    <div class="panel panel-default">
-        <div class="panel-heading">DEBIT USERS ACCOUNT</div>
-            <div class="panel-body" align="center">
 
 
+        <div class="col-md-3">
+           @include('layouts.admin_menu')
+        </div>
+
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">DEBIT ACCOUNT </div>
                 
-				<div class="card-body col-md-6">
+                <form method="post" action="/admin/store_debit">
+                  {{ csrf_field() }}
 
-<form method="post" action="/admin/store_debit">
-          {{ csrf_field() }}
-
-	<div class="form-group row">
-        <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Account No') }}</label>
-
-
-        <div class="col-md-6">
-            <input id="username" type="text" name="username" value="{{ $user->username }}" readonly="">
-        </div>
-    </div>
-
-	<div class="form-group row">
-        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
+                    <div style="padding: 20px;">
+                      
+                      <div class="row">
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <label>Account ID*</label>
+                            <input type="text" value="{{ $user->username }}" class="form-control" name="username" readonly>
+                          </div>
+                        </div>
+                      </div>
 
 
-        <div class="col-md-6">
-            <input id="name" type="text" name="name" value="{{ $user->name }}" readonly="">
-        </div>
-    </div>
+                      <div class="row">
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <label>Account Name*</label>
+                            <input type="text" value="{{ $user->name }}" class="form-control" name="name" readonly>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <label>Amount *</label>
+                            <input type="text" value="" class="form-control" name="debit" required  placeholder="₦ 1000">
+                          </div>
+                          @if ($errors->has('credit'))
+                          <span class="invalid-feedback">
+                            <strong>{{ $errors->first('credit') }}</strong>
+                          </span>
+                          @endif
+                        </div>
+                      </div>
 
-       <div class="form-group{{ $errors->has('leave_starts') ? ' has-error' : '' }}">
-          <label class="control-label col-md-4"> Amount * </label>
-          <div class="form-group col-md-6 ">
+                      <div class="row">
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <label>Naration *</label>
+                            <textarea class="input-md  textinput textInput form-control"  name="transaction" type="text" value="{{old('transaction')}}" required></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <input type="submit" value="Credit Account" class="btn btn-primary btn-sm pull-right">
+                        </div>
+                      </div>
+                    </div>
 
-              <div class="input-group">
-                <div class="input-group-addon">₦</div>
-                <input type="text" class="form-control" name="debit" placeholder="1000">
-                <div class="input-group-addon">.00</div>
+                    <input type="hidden" name="user_id" value="{{ $user->id }}" readonly>
 
-                @if ($errors->has('debit'))
-                    <span class="invalid-feedback">
-                        <strong>{{ $errors->first('debit') }}</strong>
-                    </span>
-                @endif
-            </div>
-            <em style="color: #ccc">Please do not include a comma</em>
-        </div>
-      </div>
+                  </form>
 
-
-      
-      <div class="form-group{{ $errors->has('purpose') ? ' has-error' : '' }}">
-          <label class="control-label col-md-4"> Description * </label>
-          <div class="controls col-md-8 ">  
-          <textarea class="input-md  textinput textInput form-control"  name="transaction"placeholder="FT IFO" style="margin-bottom: 10px" type="text" value="{{old('transaction')}}" required></textarea>
-              
-              @if ($errors->has('transaction'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('transaction') }}</strong>
-                  </span>
-               @endif
-          </div>
-      </div>
-      <input type="hidden" name="user_id" value="{{ $user->id }}" readonly>
-
-		 <div class="col-md-12" style="padding-left: 3px">
-			<button type="submit" class="btn btn-primary btn-xs">Post Transaction</button>
-        </div>
-  </form>
-
-                </div>
 
             </div>
+        </div>
 
 
 
-    </div>
-</div>
 
+
+
+</div> 
+<!-- Container End -->
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 
 @endsection

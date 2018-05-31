@@ -99,7 +99,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'username' => account_number(10),
             'role_slug'=>'user',
-            'status'=> '1',
+            'status'=> '0',
             'password' => Hash::make($data['password']),
         ]);
     }

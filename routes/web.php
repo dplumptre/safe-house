@@ -28,6 +28,12 @@ Route::get('/', 'WelcomeController@index')->name('index');
 
 
 // WELCOME ROUTES
+
+Route::get('welcome/test', function () {
+    return view('welcome/test');
+});
+
+
 Route::group(['prefix' => 'welcome'], function () {
 
 	Route::get('/access_denied', 'WelcomeController@access_denied')->name('access_denied');
@@ -42,7 +48,9 @@ Route::group(['prefix' => 'welcome'], function () {
 // ADMIN ROUTES
 Route::group(['prefix' => 'admin'], function () {
 
+    Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
     Route::get('/all_users', 'AdminController@all_users')->name('all_users');
+    Route::get('/online_users', 'AdminController@online_users')->name('online_users');
     Route::get('/transactions', 'AdminController@transactions')->name('transactions');
     Route::get('/transaction_history/{id}', 'AdminController@transaction_history')->name('transaction_history');
 
@@ -80,6 +88,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('accountsummary', 'HomeController@ac')->name('ac');
     Route::get('transfer', 'HomeController@transfer')->name('home.transfer');
     Route::get('profile', 'HomeController@profile')->name('home.profile');
+    Route::get('verify_account', 'HomeController@v_a')->name('home.v_a');
+    Route::post('verify_account', 'HomeController@post_v_a')->name('home.post_v_a');
     Route::post('transfer', 'HomeController@posttransfer')->name('home.posttransfer');
     //Route::get('', 'HomeController@ac')->name('ac');
 });

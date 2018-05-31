@@ -20,10 +20,27 @@ class AdminController extends Controller
     
 
 
+    public function dashboard()
+    {
+        $transactions = Transaction::All();
+        $total_credit = $transactions->sum('credit');
+        $total_debit  = $transactions->sum('debit');
+
+        $balance_sheet = $total_credit - $total_debit;
+
+        return view('admin/dashboard', compact('total_credit', 'total_debit', 'balance_sheet'));
+    }
+
     public function all_users()
     {
         $users = User::orderBy('created_at', 'desc')->get();
         return view('admin/all_users', compact('users'));
+    }
+
+    public function online_users()
+    {
+        $users = User::orderBy('created_at', 'desc')->get();
+        return view('admin/online_users', compact('users'));
     }
 
 
@@ -39,14 +56,16 @@ class AdminController extends Controller
 
     public function transaction_history($id)
     {
-        
-$transactions = Transaction::where('user_id', $id)->orderBy('created_at', 'desc')->get();
-$total_credit = $transactions->sum('credit');
-$total_debit  = $transactions->sum('debit');
-$account_balance = $total_credit - $total_debit;
+            
+        $transactions = Transaction::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        $total_credit = $transactions->sum('credit');
+        $total_debit  = $transactions->sum('debit');
+        $account_balance = $total_credit - $total_debit;
+
+        $history = $transactions->count();
 
 
-        return view('admin/transaction_history', compact('transactions', 'total_credit', 'total_debit', 'account_balance'));
+        return view('admin/transaction_history', compact('transactions', 'total_credit', 'total_debit', 'account_balance', 'history'));
     }
 
 
@@ -60,28 +79,41 @@ $account_balance = $total_credit - $total_debit;
 
 
     public function verify_account(Request $request) {
+
         $this->validate($request, [
             'account_no' => 'required|integer:10'
             ]);
+
         $account_no = $request->account_no;
         $users = User::where('username', '=', $account_no)->first();
 
-        $check = $users->count();
+        // $check = $users->count();
 
-        if ($check > 0) {
+        if ($users) {
+            $request->Session()->flash('message.content', 'Account number ok!');
+            $request->session()->flash('message.level', 'success');
             return view('admin/make_transfer', compact('users'));
         }
         else{
-            return "Account number not found";
+                $request->Session()->flash('message.content', 'The account number is invalid');
+                $request->session()->flash('message.level', 'danger');
+                return view('admin/transfer');
         }
-        // 
+        
         // $verify_account = Transaction::with('user')->orderBy('user_id')->groupBy('user_id')->get();
-        return view('admin/make_transfer', compact('users'));
+        // return view('admin/make_transfer', compact('users'));
     }
 
 
 public function store_transfer(Request $request)
 {
+    
+
+        // CHECK USER ACCOUNT BALANCE
+        $user_transactions = Transaction::where('user_id', Auth::user()->id)->get();
+        $total_credit = $user_transactions->sum('credit');
+        $total_debit  = $user_transactions->sum('debit');
+        $account_balance = $total_credit - $total_debit;
        
        // CHECK IF AMOUNT HAS BEEN ENTERED
         $amount = $request->amount;
@@ -96,15 +128,10 @@ public function store_transfer(Request $request)
 
     }
 
-// CHECK USER ACCOUNT BALANCE
-$user_transactions = Transaction::where('user_id', Auth::user()->id)->get();
-$total_credit = $user_transactions->sum('credit');
-$total_debit  = $user_transactions->sum('debit');
-$account_balance = $total_credit - $total_debit;
 
 
 
-  if ($account_balance < $amount) {
+  if ($amount > $account_balance) {
 
         $request->Session()->flash('message.content', 'Your account balance is not sufficient for this transfer');
         $request->session()->flash('message.level', 'danger');
@@ -138,7 +165,7 @@ $account_balance = $total_credit - $total_debit;
         }
 
 
-           return view('admin/transfer');
+            return view('admin/make_transfer');
         }
 
 

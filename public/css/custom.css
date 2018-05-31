@@ -1,32 +1,231 @@
-body {
-	padding-top: 50px;
-	color: #959595;
-	}
-	
-h1, h2, h3, h4, h5, h6 {
-	color: black;
-	}
-	
-.feature {
-	background-color: yellowgreen;
-	color: greenyellow;
-	}
-	
-.article-intro {
-    margin-bottom: 25px;
+/* Add here all your CSS customizations */
+.plus { display: inline; top: 0px; position: absolute; margin-left: 55px; }
+.nudge_label { margin-left: 40px; }
+
+a.button-link {
+	background-color: #009654;
+	background-image: url(../img/arrow-white.png);
+	background-position: 90% 50%;
+	background-repeat: no-repeat;
+	color: #FFF;
+	padding: 5px 60px 5px 10px;
+	border: none;
+	border-radius:3px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	float: left;
+	display: block;
+}
+a.button-link:hover {
+	background-color: #76bf5e;
 }
 
-.footer-blurb {
-    padding: 30px 0;
-    background-color: goldenrod;
-    color: black;
+.nivo-slider .theme-default .nivoSlider {
+	border-radius: 0px;
+	-webkit-box-shadow: 0px 1px 5px 0px #4a4a4a;
+	-moz-box-shadow: 0px 1px 5px 0px #4a4a4a;
+	box-shadow: 0px 1px 5px 0px #4a4a4a;
+	margin-bottom: 1px;
 }
-    
-.footer-blurb-item {
-    padding: 30px;
-    }
- 
-.small-print {
-	background-color: #fff;
-	padding: 30px 0;
+
+.nivo-slider .theme-default .nivoSlider img {border-radius: 0px;}
+
+.theme-default .nivo-directionNav a {
+	width:64px;
+	height:50px;
+}
+
+.theme-default:hover .nivo-directionNav a { opacity: 1; }
+.theme-default a.nivo-nextNav {
+	background-position:-64px 0;
+	right:0px;
+}
+.theme-default a.nivo-prevNav {
+	left:0px;
+}
+
+/* Caption styles */
+.nivo-caption {
+	position:absolute;
+	left:120px;
+	top:50px;
+	color:#fff;
+	width:40%;
+	z-index:8;
+	padding: 5px 10px;
+	overflow: hidden;
+	background: none;
+	display: none;
+}
+.nivo-caption h1 {
+	padding:0;
+	margin:0px 0px 10px 0px;
+	line-height: 42px;
+	font-weight:100;
+	font-size: 36px;
+}
+.nivo-caption p {
+	padding:5px;
+	margin:0;
+	color: #009654;
+	font-size: 16px;
+}
+.nivo-caption a {
+	display:inline !important;
+}
+.nivo-caption ul {
+	display:inline !important;
+	padding: 0px;
+	margin: 0px;
+}
+.nivo-caption ul li {
+	list-style: none;
+	display: block;
+	background-image: url(../img/check.png);
+	background-position: 1px 0px;
+	background-repeat: no-repeat;
+	padding: 0px 0px 10px 30px;
+	color: #00a14b;
+}
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a {
+	position:absolute;
+	top:40%;
+	z-index:9;
+	cursor:pointer;
+}
+.nivo-prevNav {
+	left:0px;
+}
+.nivo-nextNav {
+	right:0px;
+}
+/* Control nav styles (e.g. 1,2,3...) */
+.nivo-controlNav {
+	text-align:center;
+	padding: 15px 0;
+}
+.nivo-controlNav a {
+	cursor:pointer;
+}
+.nivo-controlNav a.active {
+	font-weight:bold;
+}
+#video-demo {
+	padding: 60px 0px;
+}
+.spaced { margin: 7px 15px 15px 0px; }
+#mobile-wallet-features { margin-top: 32px; }
+.sms-banking {
+	background-image: url(../images/woman-holding-phone.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	border-bottom: solid 1px #777777;
+	padding: 0px 0px 30px;
+}
+.phone-banking {
+	background-image: url(../images/man-holding-phone.jpg);
+	padding-top: 40px;
+}
+.internet-banking {
+	background-image: url(../images/man-using-laptop.jpg);
+	padding-top: 40px;
+}
+body.electronic-banking #footer {
+	margin-top: 0px;
+}
+section.home-concept {
+	background: none;
+}
+#home-concept a:hover { text-decoration: none; color: #5cb85c; }
+
+/* Custom Headers */
+body.personal-current-account .page-top.custom-product {
+	background-image: url(../img/boa-uganda-personal-current-account.jpg)	
+}
+body.instant-cash-salaried-loan .page-top.custom-product {
+	background-image: url(../img/instant-cash-salaried-loan.jpg)	
+}
+body.single-fee-salary-account .page-top.custom-product {
+	background-image: url(../img/single-fee-salary-account.jpg)	
+}
+body.non-remunerated-current-account .page-top.custom-product {
+	background-image: url(../img/non-remunerated-current-account.jpg)	
+}
+body.ambitions-savings-plan .page-top.custom-product {
+	background-image: url(../img/ambitions-savings-plan.jpg)	
+}
+body.tots-to-teens .page-top.custom-product {
+	background-image: url(../img/tots-to-teens-2.jpg)	
+}
+body.trade-finance .page-top.custom-product {
+	background-image: url(../img/trade-finance.jpg)	
+}
+body.gold-plus-savings-account .page-top.custom-product {
+	background-image: url(../img/gold-plus-savings-account.jpg)	
+}
+body.classic-savings-account .page-top.custom-product {
+	background-image: url(../img/classic-savings-header.jpg)	
+}
+body.funa-ekyapa .page-top.custom-product {
+	background-image: url(../img/funa-ekyapa-header.jpg)	
+}
+body.investment-clubs-account .page-top.custom-product {
+	background-image: url(../img/investment-clubs-header.jpg)	
+}
+body.insurance-premium-financing .page-top.custom-product {
+	background-image: url(../img/insurance-premium-financing.jpg)	
+}
+body.feedback-policy .page-top.custom-product {
+	background-image: url(../img/feedback-header.jpg)	
+}
+body.reward-savings-account .page-top.custom-product {
+	background-image: url(../img/reward-savings-account.jpg)	
+}
+body.school-fees-loan-soma-loan .page-top.custom-product {
+	background-image: url(../img/school-fees-loan-soma-loan.jpg)	
+}
+body.ero-savings-account .page-top.custom-product {
+	background-image: url(../img/ero-savings-account.jpg)	
+}
+body.young-mullah .page-top.custom-product {
+	background-image: url(../img/young-mullah.jpg)	
+}
+body.vsla .page-top.custom-product {
+	background-image: url(../img/vsla.jpg)	
+}
+body.my-kikapu .page-top.custom-product {
+	background-image: url(../img/my-kikapu.jpg)	
+}
+body.sme-48 .page-top.custom-product {
+	background-image: url(../img/sme-48.html)	
+}
+body.over-drafts .page-top.custom-product {
+	background-image: url(../img/over-drafts.jpg)	
+}
+body.public-service .page-top.custom-product {
+	background-image: url(../img/public-service-pack-header.jpg)	
+}
+body.vehicle-loan .page-top.custom-product {
+	background-image: url(../img/vehicle-financing-header.jpg)	
+}
+body.loans .page-top.custom-product {
+	background-image: url(../img/loans-header.jpg)	
+}
+.blog-posts figure {
+    float: left;
+    font-size: 11px;
+    line-height: normal;
+    margin: 7px 15px 5px 0;
+    max-width: 260px;
+    padding: 5px;
+}
+.blog-posts figcaption {
+    margin: 10px 0 0 0;
+}
+.blog-posts figure img {
+    max-width: 250px;
+}
+.blog-posts .owl-wrapper .img-thumbnail {
+	border: none;
 }
