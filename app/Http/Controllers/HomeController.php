@@ -37,9 +37,10 @@ class HomeController extends Controller
     {
       
         $user_id =$this->loggedin_user()->id;
+        $user = $this->loggedin_user();
         $t = new  Transaction();
         $bal = $t->balance($user_id);
-        return view('home.home', compact('bal'));
+        return view('home.home', compact('bal','user'));
     }
 
 
@@ -47,8 +48,9 @@ class HomeController extends Controller
     {
       
         $user_id = $this->loggedin_user()->id;
+        $user = $this->loggedin_user();
         $data = Transaction::where('user_id',$user_id)->orderBy('id','Desc')->get();
-        return view('home.accountsummary', compact('data'));
+        return view('home.accountsummary', compact('data','user'));
     }
 
 
@@ -56,18 +58,24 @@ class HomeController extends Controller
     {
 
       $authid = $this->loggedin_user()->id;
+      $user = $this->loggedin_user();
       $users= User::all();  
-      return view('home.transfer',compact('users','authid'));
+      return view('home.transfer',compact('users','authid','user'));
     }
 
 
     public function v_a() {
-        return view('home.verify_account');
+        $user = $this->loggedin_user();
+        return view('home.verify_account',compact('user'));
     }
 
 
 
     public function post_v_a(Request $request) {
+
+        $request->validate([
+            'account_no' => 'required|Numeric',
+        ]);
         $account_no = $request->account_no;
         $users = User::where('username', '=', $account_no)->first();
         return view('home/transfer', compact('users'));

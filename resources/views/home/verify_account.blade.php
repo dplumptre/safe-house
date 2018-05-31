@@ -1,56 +1,49 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="col-md-12">
 
-@if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                   <h3> You are logged in!</h3>
-
-<div class="card-header">Dashboard : </div>
-</div>
-
-
-
-<div class="col-md-4">       
-@include('layouts.admin_menu')
-</div>
-
-<div class="col-md-8">
-@include('layouts.partials.errors')
-<div class="panel panel-default">
-        <div class="panel-heading">TRANSFER FUND</div>
-            <div class="panel-body" align="center">
-
-
-  <form method="post" action="{{ route('home.post_v_a')}}">
-    {{ csrf_field() }}
-
-    <div class="form-group row">
-      <label>Account No</label>
-      <input id="account_no" type="text" name="account_no" value="" >
-      <button type="submit" class="btn btn-primary btn-xs">Verify Account</button>
+<div role="main" class="main">
+    <div class="container">
+      <div class="row acct-intro m-t-5">
+        <div class="col-lg-12">
+          <p> <strong>Welcome, {{ $user->name}}</strong> <span class="color-red">Last Login: 03/10/2017 9:05pm EST</span> </p>
+        </div>
+      </div>
+      <div class="row m-t-2 m-b-5">
+        <div class="col-md-3">
+        @include('layouts.home_menu')
+        </div>
+        <div class="col-md-6">
+          <div class="toggle" data-plugin-toggle data-plugin-options='{ "isAccordion": true }'>
+           <section class="toggle active">
+              <label>Transfer</label>
+              <div class="toggle-content">
+                <div class="box-typical">
+                @if (count($errors) > 0)
+     <div class="alert alert-danger"> 
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
-    
-  </form>
+@endif       
 
-
+                <form method="post" action="{{ route('home.post_v_a')}}">
+                {{ csrf_field() }}
+            
+                <div class="form-group row">
+                  <label>&nbsp;Account No</label>
+                  <input id="account_no" type="text" name="account_no" value="" >
+                  <button type="submit" class="btn btn-primary btn-xs"> Verify Account</button>
                 </div>
-            </div>
-    </div>
+                
+              </form>
+                  </div></div>
+            </section>
+          </div>
+          <div class="clear clearfix"></div>
+        </div>
 @endsection
-
-
-
-
-
-
-
-
 
 
 
