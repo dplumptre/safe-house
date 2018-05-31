@@ -31,7 +31,7 @@
                         <div class="form-group">
                           <div class="col-md-12">
                             <label>Account ID*</label>
-                            <input type="text" value="{{$users->username}}" class="form-control" name="user_id" readonly>
+                            <input type="text" value="{{$users->username}}" class="form-control" name="username" readonly>
                           </div>
                         </div>
                       </div>

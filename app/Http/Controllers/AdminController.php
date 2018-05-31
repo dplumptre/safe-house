@@ -87,8 +87,6 @@ class AdminController extends Controller
         $account_no = $request->account_no;
         $users = User::where('username', '=', $account_no)->first();
 
-        // $check = $users->count();
-
         if ($users) {
             $request->Session()->flash('message.content', 'Account number ok!');
             $request->session()->flash('message.level', 'success');
@@ -100,8 +98,6 @@ class AdminController extends Controller
                 return view('admin/transfer');
         }
         
-        // $verify_account = Transaction::with('user')->orderBy('user_id')->groupBy('user_id')->get();
-        // return view('admin/make_transfer', compact('users'));
     }
 
 
@@ -115,38 +111,33 @@ public function store_transfer(Request $request)
         $total_debit  = $user_transactions->sum('debit');
         $account_balance = $total_credit - $total_debit;
        
-       // CHECK IF AMOUNT HAS BEEN ENTERED
         $amount = $request->amount;
-    if ($amount == "" || $amount == "NULL") {
-
-        $request->Session()->flash('message.content', 'Please enter amount');
-        $request->session()->flash('message.level', 'danger');
-
+        $transaction = $request->transaction;
         $account_no = $request->username;
+
+    if ($amount > $account_balance) {
         $users = User::where('username', '=', $account_no)->first();
-        return view('admin/make_transfer', compact('users'));
-
-    }
-
-
-
-
-  if ($amount > $account_balance) {
-
         $request->Session()->flash('message.content', 'Your account balance is not sufficient for this transfer');
         $request->session()->flash('message.level', 'danger');
-
-        $account_no = $request->username;
-        $users = User::where('username', '=', $account_no)->first();
         return view('admin/make_transfer', compact('users'));
-
     }
-
-
-
+    elseif ($amount == "" || $amount == NULL){
+        $users = User::where('username', '=', $account_no)->first();
+        $request->Session()->flash('message.content', 'Please enter amount');
+        $request->session()->flash('message.level', 'danger');
+        return view('admin/make_transfer', compact('users'));
+    }
+    elseif ($transaction == "" || $transaction == NULL){
+        $users = User::where('username', '=', $account_no)->first();
+        $request->Session()->flash('message.content', 'Please enter a narration for this transfer');
+        $request->session()->flash('message.level', 'danger');
+        return view('admin/make_transfer', compact('users'));
+    }
+    else{
+       
             $transferFrom = new Transaction;
             $transferFrom->user_id = Auth::user()->id;
-            $transferFrom->debit = $request->amount;
+            $transferFrom->debit = $amount;
             $transferFrom->transaction = $request->transaction;
 
         if ($transferFrom->save()) {
@@ -154,22 +145,18 @@ public function store_transfer(Request $request)
             $request->Session()->flash('message.content', 'Your transfer was successful!');
             $request->session()->flash('message.level', 'success');
 
-
             $transferTo = new Transaction;
             $transferTo->user_id = $request->user_id;
             $transferTo->credit = $request->amount;
             $transferTo->transaction = $request->transaction;
 
             $transferTo->save();
-        
         }
 
-
-            return view('admin/make_transfer');
-        }
-
-
-// TRANSFER END
+    }
+            return view('admin/transfer');
+         
+} // TRANSFER END
 
 
 
