@@ -1,31 +1,28 @@
 @extends('layouts.app')
-
 @section('content')
 
-
-<div class="col-md-12">
-
-
-
-<h3>TRANSFER FUNDS</h3>
-<p>&nbsp;</p>
-
-
-
-</div>
-
-
-
-
-
-<div class="col-md-4">       
-@include('layouts.admin_menu')
-</div>
+<div role="main" class="main">
+    <div class="container">
+      <div class="row acct-intro m-t-5">
+        <div class="col-lg-12">
+          <p> <strong>Welcome, {{ $user->name}}</strong> <span class="color-red">Last Login: 03/10/2017 9:05pm EST</span> </p>
+        </div>
+      </div>
+      <div class="row m-t-2 m-b-5">
+        <div class="col-md-3">
+        @include('layouts.home_menu')
+        </div>
+        <div class="col-md-6">
+          <div class="toggle" data-plugin-toggle data-plugin-options='{ "isAccordion": true }'>
+           <section class="toggle active">
+              <label>Transfer</label>
+              <div class="toggle-content">
+                <div class="box-typical">
 
 
 
-        <div class="col-md-8">
-        @if (count($errors) > 0)
+
+                @if (count($errors) > 0)
     <div class="error">
         <ul>
             @foreach ($errors->all() as $error)
@@ -64,7 +61,24 @@
 
 
 
-
-
-</div>
+                  </div></div>
+            </section>
+          </div>
+          <div class="clear clearfix"></div>
+        </div>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

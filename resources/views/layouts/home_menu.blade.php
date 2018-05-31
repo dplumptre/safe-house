@@ -1,12 +1,3 @@
- @if (Auth::user() && Auth::user()->status == "1" && Auth::user()->role_slug == "admin")
- <ul class="list-group">
-	<li class="list-group-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
-	<li class="list-group-item"><a href="{{ route('all_users')}}">All users</a></li>
-	<li class="list-group-item"><a href="{{ route('online_users')}}" >Online Users</a></li>
-	<li class="list-group-item"><a href="{{ route('transactions')}}" >Credit / Debit </a></li>
-	<li class="list-group-item"><a href="{{ route('transfer')}}" >Quick Transfer</a></li>
-</ul>
-@endif
 
 
  <aside class="sidebar">
@@ -14,14 +5,14 @@
               <div class="tabs">
                 <ul class="nav nav-tabs">
                   <li class="active"> <a href="#" data-toggle="tab"> <i class="fa fa-check-circle"></i> Quick Links</a> </li>
-                  <li> <a href="#" data-toggle="tab"> <i class="fa fa-bank"></i> Contacts</a> </li>
+                 
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane active" id="popularPosts">
-                    <p> <a href="#"> <i class="fa fa-binoculars"></i> Dashboard</a> </p>
-                    <p> <a href="#" target="_blank"> <i class="fa fa-cloud-download"></i> Transaction History</a> </p>
-                    <p> <a href="#" target="_blank"> <i class="fa fa-cloud-download"></i> Transfer Funds</a> </p>
-                    <p> <a href="#" target="_blank"> <i class="fa fa-cloud-download"></i> User Management</a> </p>
+                    <p> <a href="{{ route('home')}}"><i class="fa fa-binoculars"></i>  Dashboard</a> </p>
+                    <p> <a href="{{ route('ac')}}"><i class="fa fa-cloud-download"></i> Account summany </a> </p>
+                    <p> <a href="{{ route('home.v_a')}}" > <i class="fa fa-cloud-download"></i> Transfer Funds</a> </p>
+                    <p> <a href="{{ route('home.profile')}}" > <i class="fa fa-cloud-download"></i> User Management</a> </p>
                     <p> <a href="#"> <i class="fa fa-binoculars"></i> Find a branch near you</a> </p>
                     <p> <a href="#"> <i class="fa fa-binoculars"></i> Help Center</a> </p>
                   </div>
@@ -45,10 +36,3 @@
             </div>
           </aside>
 
-
-<ul class="list-group">
-<li class="list-group-item"><a href="{{ route('home')}}">Dashboard</a></li>
-<li class="list-group-item"><a href="{{ route('ac')}}">Account summany</a></li>
-<li class="list-group-item"><a href="{{ route('home.v_a')}}">Transfer</a></li>
-<li class="list-group-item"><a href="{{ route('home.profile')}}">Profile</a></li>
-</ul>
