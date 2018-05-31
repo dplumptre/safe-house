@@ -73,12 +73,13 @@ class HomeController extends Controller
 
     public function post_v_a(Request $request) {
 
+        $user = $this->loggedin_user();
         $request->validate([
             'account_no' => 'required|Numeric',
         ]);
         $account_no = $request->account_no;
         $users = User::where('username', '=', $account_no)->first();
-        return view('home/transfer', compact('users'));
+        return view('home/transfer', compact('users','user'));
     }
 
 
