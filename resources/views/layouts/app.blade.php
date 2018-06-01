@@ -73,15 +73,31 @@
     <div class="header-top">
       <div class="container">
         <p>Call Center <span><i class="fa fa-phone"></i><a href="#">+256 414 302 111</a></span> | Toll Free Number <span><i class="fa fa-phone"></i><a href="#">0800 100 140</a></span> | <a href="#">feedback@acornbank.com</a> | <a href="#">Contact Us</a></p>
-        <div class="search">
-          <form id="searchForm" action="#" method="get">
-            <div class="input-group">
-              <input type="text" class="form-control search" name="q" id="q" placeholder="Search..." required>
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-              </span> </div>
-          </form>
-        </div>
+        
+
+<div class="search">
+    @if (Auth::guest())
+    <form id="searchForm" action="#" method="get">
+      <div class="input-group">
+        <input type="text" class="form-control search" name="q" id="q" placeholder="Search..." required>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+        </span> </div>
+      </form>
+    @else
+      <form action="{{ route('logout') }}" method="POST">
+        {{ csrf_field() }}
+        <button type="submit" style="background:none!important;
+        color:#fff;
+        border:none; 
+        padding:0!important;
+        font: inherit;
+        cursor: pointer;">Logout</button>
+      </form>
+    @endif
+</div>
+
+
       </div>
     </div>
     <div class="container"> <span class="logo"> <a href="{{ asset('/')}}"> <img alt="Acorn Bank" width="250" height="65" data-sticky-width="189" data-sticky-height="40" src="{{ asset('img/acornlogo.png')}}"> </a> </span>
@@ -237,20 +253,7 @@
             <li><a href="{{ route('login')}}" ><i class="fa fa-lock"></i> <span class="long-word">Online Banking Login</span><span class="short-word">Login</span></a></li>
             <li><a href="{{ route('register')}}">Register</a></li>
             @endguest
-            @auth
-                    <li >
-    
-                        <a  href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        Logout
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </li>
-                @endauth
+            
           </ul>
         </nav>
       </div>

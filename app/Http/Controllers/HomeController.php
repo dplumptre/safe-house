@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Transaction;
 use Auth;
 use App\User;
+use App\Detail;
 use App\Http\Requests\GalleryRequest;
 
 
@@ -45,6 +46,69 @@ class HomeController extends Controller
         $bal = $t->balance($user_id);
         return view('home.home', compact('bal','user'));
     }
+
+
+
+
+
+// Store Edited Profile
+
+
+
+    public function up()
+    {
+        $user = $this->loggedin_user();  
+        // $user = Detail::where('user_id', $user)->first();
+        return view('home.update_profile',compact('user'));
+    }
+
+
+    public function store_profile(Request $request) {
+        $request->validate([
+            'mobile' => 'required',
+            'ssn' => 'required|Numeric',
+            'dob' => 'required',
+            'employment_status' => 'required',
+            'address' => 'required',
+        ]);
+
+        $user = $this->loggedin_user();
+
+        $profile = new Detail;
+        $profile->user_id = $user->id;
+        $profile->mobile = $request->mobile;
+        $profile->ssn = $request->ssn;
+        $profile->dob = $request->dob;
+        $profile->employment_status = $request->employment_status;
+        $profile->address = $request->address;
+
+        if ($profile->save()) {
+          $request->session()->flash('message.content', 'Profile Updated Successfully!');
+          $request->session()->flash('message.level', 'success');
+
+        // $user = Detail::where('user_id', $user_id)->first();
+          
+        // return view('home.update_profile', compact('user'));
+        // }
+        // else{
+        //   return back();
+        }
+
+
+        return view('home.update_profile',compact('user'));
+        // return view('home.update_profile',compact('user'));
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function ac()
@@ -136,13 +200,6 @@ Pictures
 
 
 */
-
-    public function up()
-    {
-    $user = $this->loggedin_user();  
-    return view('home.update_profile',compact('user'));
-    }
-
 
 
     public function e_i()

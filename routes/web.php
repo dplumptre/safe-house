@@ -90,7 +90,9 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('edit_idcard',  'HomeController@e_i')->name('home.e_i');
     Route::get('edit_picture', 'HomeController@e_pic')->name('home.e_pic');
     Route::get('update_profile', 'HomeController@up')->name('home.up');
+    Route::get('update_profile', 'HomeController@up')->name('home.up');
 
+    Route::post('store_profile', 'HomeController@store_profile')->name('home.store_profile');
 
 
     Route::post('edit_idcard',  'HomeController@p_e_i')->name('post.e_i');
