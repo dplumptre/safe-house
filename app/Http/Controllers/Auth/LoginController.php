@@ -31,6 +31,9 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected $toAdmin ='admin/dashboard';
+
+    protected $toHome ='/home';
     /**
      * Create a new controller instance.
      *
@@ -41,30 +44,33 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
-
-   
-
-    protected function attemptLogin(Request $request)
+    protected function validateLogin(Request $request)
     {
-      
-        $user = new User();
-  
-          if($user->isActivated($request->username) == false){
-
-            $request->session()->flash('message.content', 'Account not activated');
-            $request->session()->flash('message.level', 'danger');
-          }
-
-          return $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
-            );   
-
-
-           return back();
-
+        $this->validate($request, [
+            $this->username() => 'required|string|exists:users,username,status,1',
+            //$this->username() => 'required|string|exists:users,username',
+            'password' => 'required|string',
+        ]);
     }
 
+
+    protected function authenticated($request, $user)
+    {
+
+        // if ($user->status === 0) {
+        //     auth()->logout();
+        // $request->Session()->flash('message.content', 'This account has not been verified');
+        // $request->session()->flash('message.level', 'danger');
+        // return back();
+        // }
+        
+
+        if($user->role_slug === 'admin') {
+            return redirect()->intended($this->toAdmin);
+        }
+
+        return redirect()->intended($this->toHome);
+    }
 
 
 
