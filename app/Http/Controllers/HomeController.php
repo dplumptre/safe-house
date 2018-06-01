@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Transaction;
 use Auth;
 use App\User;
+use App\Http\Requests\GalleryRequest;
+
+
 class HomeController extends Controller
 {
     /**
@@ -164,10 +167,55 @@ Pictures
     }
 
 
-    public function p_e_pic()
+    public function p_e_pic(GalleryRequest $request)
     {
-      return view('home.edit_picture',compact('user'));
+   
+
+return $image;
+
+        $image = $request->file('passport');
+
+       // return $type;
+
+
+                    $filename = arrageImageName($image->getClientOriginalName());
+
+
+                     /* inserting in database */
+
+
+                    $photo  = Payment::create(array(
+                    'receipt'=> $filename,
+                    'paymenttype_id'=> $type,
+                    'term_id'  => $term_id,
+                    'class_id'  => $class_id,
+                    'user_id'   => $this->CurrentUserId(),
+                    ));
+
+                     /*
+                      * Declearing path
+                      * make sure you chmod 777 the dir below
+                      * or you will get error saying "Can't write image data to path "
+                      *  */
+                    $thumb_path = 'images/thumb/'.$filename;
+                    $normal_path = 'images/pics/'.$filename;
+
+             $thumb = Image::make($image->getRealPath())->resize(150, 60)->sharpen(15)->save($thumb_path);
+              $normalimage = Image::make($image->getRealPath())->save( $normal_path);
+
+                 return redirect('home.edit_picture',compact('user'));
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function p_e_pro()

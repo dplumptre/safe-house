@@ -29,13 +29,13 @@
 @endif       
 
 
-<form class="form-horizontal"  enctype="multipart/form-data" method="post" action="">
+<form class="form-horizontal"  enctype="multipart/form-data" method="post" action="{{ route('post.e_pic')}}">
  {{ csrf_field() }}
 
 <div class="form-group">
     <label class="control-label col-md-2">Picture</label>
           <div class="col-sm-5">
-          <input  class="form-control" name="picture" type="file" id="file">
+          <input  class="form-control" name="passport" type="file" id="file">
         </div>
     </div>
 

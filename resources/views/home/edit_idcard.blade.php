@@ -30,11 +30,11 @@
 
                
 
-<form class="form-horizontal"  enctype="multipart/form-data" method="post" action="">
+<form class="form-horizontal"  enctype="multipart/form-data" method="post" action="{{ route('post.e_pic')}}">
  {{ csrf_field() }}
 
 <div class="form-group">
-    <label class="control-label col-md-2">Picture</label>
+    <label class="control-label col-md-2">ID CARD</label>
           <div class="col-sm-5">
           <input  class="form-control" name="picture" type="file" id="file">
         </div>
