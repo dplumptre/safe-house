@@ -108,7 +108,7 @@
         <nav class="nav-main mega-menu">
        
           <ul class="nav nav-pills nav-main" id="mainMenu">
-          @guest
+         
             <li class="dropdown mega-menu-item mega-menu-fullwidth active"> <a class="dropdown-toggle" href="#"> Personal <i class="fa fa-angle-down"></i> </a>
               <ul class="dropdown-menu">
                 <li>
@@ -240,7 +240,7 @@
             <li><a href="#">Mobile Wallet</a></li>
             <li class="dropdown"> <a class="dropdown-toggle" href="#"> Other Services <i class="fa fa-angle-down"></i> </a>
               <ul class="dropdown-menu">
-              @if (Auth::user() && Auth::user()->status == "1" && Auth::user()->role_slug == "admin")      
+              @if(Auth::user() && Auth::user()->status == "1" && Auth::user()->role_slug == "admin")      
               <li><a href="{{ route('all_users')}}">View all users</a></li>
               <li><a href="{{ route('transactions')}}">Perform Transaction</a></li>
               <li><a href="{{ route('all_users')}}">View all users</a></li>
@@ -393,8 +393,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <p>2016 &copy; Bank of Africa Uganda Ltd. All Rights Reserved.<br />
-            BANK OF AFRICA IN UGANDA (Licence Number A1.001) is regulated by BANK OF UGANDA</p>
+          <p>2018 &copy; Acorn Bank Ltd. All Rights Reserved.<br />
         </div>
       </div>
     </div>
@@ -481,12 +480,6 @@
         </script>
 
 
-
-
-
-
-
 </body>
 
-<!-- Mirrored from www.boauganda.com/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Apr 2018 12:26:23 GMT -->
 </html>
