@@ -73,19 +73,7 @@
     <div class="header-top">
       <div class="container">
         <p>Call Center <span><i class="fa fa-phone"></i><a href="#">+256 414 302 111</a></span> | Toll Free Number <span><i class="fa fa-phone"></i><a href="#">0800 100 140</a></span> | <a href="#">feedback@acornbank.com</a> | <a href="#">Contact Us</a></p>
-        
         <div class="search">
-        @if(Auth::user())
-        <form action="{{ route('logout') }}" method="POST">
-          {{ csrf_field() }}
-          <button type="submit" style="background:none!important;
-          color:#fff;
-          border:none; 
-          padding:0!important;
-          font: inherit;
-          cursor: pointer;">Logout</button>
-        </form>
-        @else
           <form id="searchForm" action="#" method="get">
             <div class="input-group">
               <input type="text" class="form-control search" name="q" id="q" placeholder="Search..." required>
@@ -93,11 +81,7 @@
               <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
               </span> </div>
           </form>
-        @endif
-         
         </div>
-
-
       </div>
     </div>
     <div class="container"> <span class="logo"> <a href="{{ asset('/')}}"> <img alt="Acorn Bank" width="250" height="65" data-sticky-width="189" data-sticky-height="40" src="{{ asset('img/acornlogo.png')}}"> </a> </span>
@@ -108,7 +92,7 @@
         <nav class="nav-main mega-menu">
        
           <ul class="nav nav-pills nav-main" id="mainMenu">
-         
+          @guest
             <li class="dropdown mega-menu-item mega-menu-fullwidth active"> <a class="dropdown-toggle" href="#"> Personal <i class="fa fa-angle-down"></i> </a>
               <ul class="dropdown-menu">
                 <li>
@@ -240,7 +224,7 @@
             <li><a href="#">Mobile Wallet</a></li>
             <li class="dropdown"> <a class="dropdown-toggle" href="#"> Other Services <i class="fa fa-angle-down"></i> </a>
               <ul class="dropdown-menu">
-              @if(Auth::user() && Auth::user()->status == "1" && Auth::user()->role_slug == "admin")      
+              @if (Auth::user() && Auth::user()->status == "1" && Auth::user()->role_slug == "admin")      
               <li><a href="{{ route('all_users')}}">View all users</a></li>
               <li><a href="{{ route('transactions')}}">Perform Transaction</a></li>
               <li><a href="{{ route('all_users')}}">View all users</a></li>
@@ -252,6 +236,21 @@
            
             <li><a href="{{ route('login')}}" ><i class="fa fa-lock"></i> <span class="long-word">Online Banking Login</span><span class="short-word">Login</span></a></li>
             <li><a href="{{ route('register')}}">Register</a></li>
+            @endguest
+            @auth
+                    <li >
+    
+                        <a  href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+                @endauth
           </ul>
         </nav>
       </div>
@@ -393,7 +392,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <p>2018 &copy; Acorn Bank Ltd. All Rights Reserved.<br />
+          <p>2016 &copy; Bank of Africa Uganda Ltd. All Rights Reserved.<br />
+            BANK OF AFRICA IN UGANDA (Licence Number A1.001) is regulated by BANK OF UGANDA</p>
         </div>
       </div>
     </div>
@@ -460,26 +460,7 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-
-
-
-
-
- <!-- DATATABLES    -->      
-        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
-
-        <script type="text/javascript">
-        $(document).ready(function() {
-        $('#myTable').DataTable( {
-        "scrollX": true,
-        "iDisplayLength": 25,
-        "lengthMenu": [ [20, 25, 50, -1], [20, 25, 50, "All"] ]
-        } );
-        } );
-        </script>
-
-
 </body>
 
+<!-- Mirrored from www.boauganda.com/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Apr 2018 12:26:23 GMT -->
 </html>
