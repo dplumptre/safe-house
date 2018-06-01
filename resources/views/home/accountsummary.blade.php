@@ -86,6 +86,8 @@ TOTAL : {{ number_format($total) }}
            
           </div>
           <div class="clear clearfix"></div>
+          </div>
+        </div>
         </div>
 @endsection
 

@@ -42,6 +42,8 @@
             </section>
           </div>
           <div class="clear clearfix"></div>
+          </div>
+        </div>
         </div>
 @endsection
 
