@@ -10,6 +10,7 @@
       </div>
       <div class="row m-t-2 m-b-5">
         <div class="col-md-3">
+        @include('layouts.admin_menu')
         @include('layouts.home_menu')
         </div>
         <div class="col-md-6">
