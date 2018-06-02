@@ -7,25 +7,22 @@
 
 
 @section('content')
-<div class="container" style="padding-top:50px;">
 
 
+<div role="main" class="main">
+  <div class="container">
+    @include('layouts.home_menu')
+    
+    <div class="col-md-6">
+      <div class="toggle" data-plugin-toggle data-plugin-options='{ "isAccordion": true }'>
+            @include('layouts.partials.errors')   
+            
+       <section class="toggle active">
+        <label>Transfer</label>
+        <div class="toggle-content">
+          <div class="box-typical">
 
-
-        <div class="col-md-3">
-           @include('layouts.admin_menu')
-        </div>
-
-        <div class="col-md-9">
-    	
-      @include('layouts.partials.errors')
-
-            <div class="panel panel-default">
-                <div class="panel-heading">TRANSFER FUND </div>
-
-
-
-<form method="post" action="/admin/store_transfer">
+            <form method="post" action="/home/store_tranzfer">
           {{ csrf_field() }}
           <div style="padding: 20px;">
 
@@ -52,7 +49,7 @@
                         <div class="form-group">
                           <div class="col-md-12">
                             <label>Amount *</label>
-                            <input type="text" value="" class="form-control" name="amount"  placeholder="₦ 1000">
+                            <input type="text"  value="{{old('amount')}}"  class="form-control" name="amount"  placeholder="₦ 1000">
                           </div>
                           @if ($errors->has('credit'))
                           <span class="invalid-feedback">
@@ -81,23 +78,17 @@
 </div>
   </form>
 
+          </div></div>
+        </section>
+      </div>
+      <div class="clear clearfix"></div>
+    </div>
+  </div>
+</div>
 
-            </div>
-        </div>
 
 
 
-
-
-
-</div> 
-<!-- Container End -->
-
-<script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
 
 
 @endsection

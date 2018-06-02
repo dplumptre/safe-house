@@ -87,12 +87,24 @@ Route::group(['prefix' => 'home'], function () {
 
 
 
+//TRANSFER
+
+    Route::get('/transfer', 'HomeController@transfer')->name('transfer');
+    Route::post('/verify_acct', 'HomeController@verify_acct')->name('verify_acct');
+    Route::post('/store_tranzfer', 'HomeController@store_tranzfer');
+
+
+
+
+
     Route::get('edit_idcard',  'HomeController@e_i')->name('home.e_i');
     Route::get('edit_picture', 'HomeController@e_pic')->name('home.e_pic');
-    Route::get('update_profile', 'HomeController@up')->name('home.up');
-    Route::get('update_profile', 'HomeController@up')->name('home.up');
-
+    Route::get('edit_profile', 'HomeController@edit_profile')->name('home.edit_profile');
     Route::post('store_profile', 'HomeController@store_profile')->name('home.store_profile');
+    
+    Route::get('update_profile', 'HomeController@update_profile')->name('home.update_profile');
+    Route::patch('/update_profile/{profile}', 'HomeController@store_updated_profile');
+
 
 
     Route::post('edit_idcard',  'HomeController@p_e_i')->name('post.e_i');

@@ -1,5 +1,12 @@
-
-
+<div class="row acct-intro m-t-5">
+        <div class="col-lg-12">
+          <p> <strong>Welcome, {{ ucwords(Auth::user()->name)}}</strong> 
+<span class="color-red"><?php echo date("l jS \of F Y h:i:s A"); ; ?> </span> </p>
+          </p>
+        </div>
+      </div>
+      <div class="row m-t-2 m-b-5">
+<div class="col-md-3">
  <aside class="sidebar">
             <div>
               <div class="tabs">
@@ -11,8 +18,8 @@
                   <div class="tab-pane active" id="popularPosts">
                     <p> <a href="{{ route('home')}}"><i class="fa fa-binoculars"></i>  Dashboard</a> </p>
                     <p> <a href="{{ route('ac')}}"><i class="fa fa-cloud-download"></i> Account summany </a> </p>
-                    <p> <a href="{{ route('home.v_a')}}" > <i class="fa fa-cloud-download"></i> Transfer Funds</a> </p>
-                    <p> <a href="{{ route('home.up')}}"> <i class="fa fa-binoculars"></i> Edit Profile</a> </p>
+                    <p> <a href="/home/transfer" > <i class="fa fa-cloud-download"></i> Transfer Funds</a> </p>
+                    <p> <a href="{{ route('home.edit_profile')}}"> <i class="fa fa-binoculars"></i> Edit Profile</a> </p>
                     <p> <a href="{{ route('home.e_i')}}"> <i class="fa fa-binoculars"></i> Edit Id Card</a></p>
                     <p> <a href="{{ route('home.e_pic')}}"> <i class="fa fa-binoculars"></i> Edit Picture</a> </p>
                   </div>
@@ -35,4 +42,4 @@
               </div>
             </div>
           </aside>
-
+ </div>

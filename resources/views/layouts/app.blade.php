@@ -463,6 +463,26 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
+
+
+
+ <!-- DATATABLES    -->      
+ <!-- <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+ <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
+
+ <script type="text/javascript">
+  $(document).ready(function() {
+    $('#myTable').DataTable( {
+      "scrollX": true,
+      "iDisplayLength": 25,
+      "lengthMenu": [ [20, 25, 50, -1], [20, 25, 50, "All"] ]
+    } );
+  } );
+</script> -->
+
+
+
+
 </body>
 
 <!-- Mirrored from www.boauganda.com/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Apr 2018 12:26:23 GMT -->

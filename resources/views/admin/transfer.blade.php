@@ -19,7 +19,7 @@
     @include('layouts.admin_menu')
 </div>
 
-<div class="col-md-9">
+<div class="col-md-6">
  @include('layouts.partials.errors')
     <div class="panel panel-default">
         <div class="panel-heading">TRANSFER FUND </div>
@@ -28,9 +28,9 @@
             <form method="post" action="/admin/verify_account">
                 {{ csrf_field() }}
 
-                <div class="form-group row">
+                <div class="form-group row" style="padding-left: 20px;">
                   <label>Account No</label>
-                  <input id="account_no" type="text" name="account_no" placeholder="Enter account no">
+                  <input id="account_no" type="text" name="account_no" placeholder="Enter account number">
                   <button type="submit" class="btn btn-primary btn-xs">Verify Account</button>
               </div>
 

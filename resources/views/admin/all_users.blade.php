@@ -5,10 +5,8 @@
 
 @section('title', 'Home page')
 
-
-
-
 @section('content')
+
 <div class="container" style="padding-top:50px;">
 
     	@include('layouts.partials.errors')
@@ -25,7 +23,7 @@
 
                 
        
-<table  id="myTable"  class="table table-hover" width="100%">
+<table  id="myTable" class="table table-bordered  table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>S/N</th>
@@ -58,7 +56,7 @@
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
 
-        <div class="col-md-5">
+        <div class="col-md-6">
             <small>
               <div class="input-select">
                 <select name="status">
@@ -108,6 +106,8 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+
+
 
 @endsection
 

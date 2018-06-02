@@ -9,6 +9,7 @@
 
 
 @section('content')
+<div class="container" style="padding-top:50px;">
 <div class="container">
 
     	@include('layouts.partials.errors')
