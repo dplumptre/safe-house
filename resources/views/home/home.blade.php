@@ -20,16 +20,35 @@
             </section>
 
             <section class="toggle active">
-              <label>Edit Picture</label>
+              <label>Profile</label>
               <div class="toggle-content">
                 <div class="box-typical">
    
                 <ul class="list-unstyled">
-                    <li class="acctdetails"> <img src="img/team/arthur-isiko-managing-director.jpg" alt=""> </li>
+                   
+                    @if($passport->checkPassport($user->id) > 0)
+                    <?php   $p = $passport->getPassport($user->id); ?>
+                       <img src="{{ asset('images/thumb/'.$p->passport) }}" alt="">
+                   @else
+                        <img src="img/profile.png" alt=""> 
+                   @endif
+                  </li>
+
+                    <li class="acctdetails"> 
+                    <h4>ID CARD</h4>
+                    @if($card->checkIdcard($user->id) > 0)
+                    <?php   $p = $card->getIdcard($user->id); ?>
+                       <img src="{{ asset('images/thumb/'.$p->idcard) }}" alt="">
+                   @else
+                        <img src="img/idcard.jpeg" alt=""> 
+                   @endif
+
+                  <li class="acctdetails"> <img src="img/team/arthur-isiko-managing-director.jpg" alt=""> </li>
                     <li> <i class="fa fa-cards"></i> <strong>Account Number:</strong> {{$user->username}}</li>
                     <li> <i class="fa fa-user"></i> <strong>Account Name:</strong> {{$user->name}}</li>
                     <li> <i class="fa fa-phone"></i> <strong>Phone:</strong> {{$user->details->mobile}}</li>
                     <li> <i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="#">{{$user->email}}</a> </li>
+                    <li class="acctdetails"> 
                   </ul>
                   </div></div>
             </section>

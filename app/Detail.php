@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Detail extends Model
 {
     protected $fillable = [
-        'address', 'passport', 'idcard','dob','mobile','ssn','employment_status','user_id'
+        'address', 'dob','mobile','ssn','employment_status','user_id'
     ];
 
 

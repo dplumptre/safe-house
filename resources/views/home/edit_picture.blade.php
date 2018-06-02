@@ -27,7 +27,7 @@
 
 <div class="form-group">
     <label class="control-label col-md-2">Picture</label>
-          <div class="col-sm-5">
+          <div class="col-sm-12">
           <input  class="form-control" name="passport" type="file" id="file">
         </div>
     </div>
