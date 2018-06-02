@@ -7,7 +7,11 @@ use App\Transaction;
 use Auth;
 use App\User;
 use App\Detail;
+use App\Passport;
+use App\Idcard;
 use App\Http\Requests\GalleryRequest;
+use App\Http\Requests\CardRequest;
+use Intervention\Image\Facades\Image;
 
 
 class HomeController extends Controller
@@ -39,12 +43,13 @@ class HomeController extends Controller
 
     public function index()
     {
-      
+        $passport = new Passport();
+        $card = new Idcard();
         $user_id =$this->loggedin_user()->id;
         $user = $this->loggedin_user();
         $t = new  Transaction();
         $bal = $t->balance($user_id);
-        return view('home.home', compact('bal','user'));
+        return view('home.home', compact('bal','user','passport','card'));
     }
 
 
@@ -218,49 +223,115 @@ Pictures
 
 
 
-    public function p_e_i()
+    public function p_e_i(CardRequest $request)
     {
-      return view('home.edit_idcard',compact('user'));
+        $user = $this->loggedin_user();
+        $image = $request->file('idcard');
+        $filename = arrageImageName($image->getClientOriginalName());
+        $t = new  Transaction();
+        $bal = $t->balance($user->id);
+        $card = new Idcard();
+        $passport = new Passport();
+
+
+    if($card->checkIdcard($user->id) < 1){
+//insert
+                     /* inserting in database */
+
+                     $photo  = Idcard::create(array(
+                        'user_id'   => $user->id,
+                        'idcard'  => $filename,
+                        ));
+            
+    }else{
+
+  //update     
+  
+  $data = $card->getIdcard($user->id);
+  $path1 = "images/thumb/" .$data->idcard;
+  $path2 = "images/pics/" .$data->idcard;
+  // remove the pics from the folder
+  unlink($path1);
+  unlink($path2);
+
+  $data->idcard = $filename;
+  $data->save();
+
+  //return redirect()->back();
+
+    }
+                         /*
+                          * Declearing path
+                          * make sure you chmod 777 the dir below
+                          * or you will get error saying "Can't write image data to path "
+                          *  */
+                          $thumb_path = 'images/thumb/'.$filename;
+                          $normal_path = 'images/pics/'.$filename;
+      
+                    $thumb = Image::make($image->getRealPath())->resize(150, 150)->sharpen(15)->save($thumb_path);
+                    $normalimage = Image::make($image->getRealPath())->save( $normal_path);
+
+   
+
+                    return view('home.home', compact('user','bal','passport','card'));
     }
 
 
     public function p_e_pic(GalleryRequest $request)
     {
-   
-
-return $image;
-
+        $user = $this->loggedin_user();
         $image = $request->file('passport');
+        $filename = arrageImageName($image->getClientOriginalName());
+        $card = new Idcard();
+        $passport = new Passport();
+        $t = new  Transaction();
+        $bal = $t->balance($user->id);
+    
 
-       // return $type;
 
-
-                    $filename = arrageImageName($image->getClientOriginalName());
-
-
+    if($passport->checkPassport($user->id) < 1){
+//insert
                      /* inserting in database */
 
+                     $photo  = Passport::create(array(
+                        'user_id'   => $user->id,
+                        'passport'  => $filename,
+                        ));
+            
+    }else{
 
-                    $photo  = Payment::create(array(
-                    'receipt'=> $filename,
-                    'paymenttype_id'=> $type,
-                    'term_id'  => $term_id,
-                    'class_id'  => $class_id,
-                    'user_id'   => $this->CurrentUserId(),
-                    ));
+  //update     
+  
+  $data = $passport->getPassport($user->id);
+  $path1 = "images/thumb/" .$data->passport;
+  $path2 = "images/pics/" .$data->passport;
+  // remove the pics from the folder
+  unlink($path1);
+  unlink($path2);
 
-                     /*
-                      * Declearing path
-                      * make sure you chmod 777 the dir below
-                      * or you will get error saying "Can't write image data to path "
-                      *  */
-                    $thumb_path = 'images/thumb/'.$filename;
-                    $normal_path = 'images/pics/'.$filename;
+  $data->passport = $filename;
+  $data->save();
 
-             $thumb = Image::make($image->getRealPath())->resize(150, 60)->sharpen(15)->save($thumb_path);
-              $normalimage = Image::make($image->getRealPath())->save( $normal_path);
+  //return redirect()->back();
 
-                 return redirect('home.edit_picture',compact('user'));
+    }
+
+
+
+                         /*
+                          * Declearing path
+                          * make sure you chmod 777 the dir below
+                          * or you will get error saying "Can't write image data to path "
+                          *  */
+                          $thumb_path = 'images/thumb/'.$filename;
+                          $normal_path = 'images/pics/'.$filename;
+      
+                    $thumb = Image::make($image->getRealPath())->resize(150, 150)->sharpen(15)->save($thumb_path);
+                    $normalimage = Image::make($image->getRealPath())->save( $normal_path);
+
+   
+
+                    return view('home.home', compact('user','bal','passport','card'));
     }
 
 

@@ -13,8 +13,8 @@
                     <p> <a href="{{ route('ac')}}"><i class="fa fa-cloud-download"></i> Account summany </a> </p>
                     <p> <a href="{{ route('home.v_a')}}" > <i class="fa fa-cloud-download"></i> Transfer Funds</a> </p>
                     <p> <a href="{{ route('home.up')}}"> <i class="fa fa-binoculars"></i> Edit Profile</a> </p>
-                    <p> <a href="{{ route('home.e_i')}}"> <i class="fa fa-binoculars"></i> Edit Id Card</a></p>
                     <p> <a href="{{ route('home.e_pic')}}"> <i class="fa fa-binoculars"></i> Edit Picture</a> </p>
+                    <p> <a href="{{ route('home.e_i')}}"> <i class="fa fa-binoculars"></i> Edit Id Card</a></p>
                   </div>
                   <div class="tab-pane" id="recentPosts">
                     <ul class="list-unstyled">
