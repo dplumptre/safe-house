@@ -25,7 +25,7 @@
 
 
 
-<form method="post" action="/admin/store_transfer">
+<form method="post" action="/admin/store_transfer"  name="myForm" onsubmit="return checkInp()" >
           {{ csrf_field() }}
           <div style="padding: 20px;">
 
@@ -52,7 +52,7 @@
                         <div class="form-group">
                           <div class="col-md-12">
                             <label>Amount *</label>
-                            <input type="text" value="" class="form-control" name="amount"  placeholder="₦ 1000">
+                            <input type="number" value="" class="form-control" name="amount" id="amount"  placeholder="₦ 1000">
                           </div>
                           @if ($errors->has('credit'))
                           <span class="invalid-feedback">
@@ -61,6 +61,21 @@
                           @endif
                         </div>
                       </div>
+
+
+<script>
+  function checkInp()
+{
+    var x=document.forms["myForm"]["amount"].value;
+    if (isNaN(x)) 
+    {
+        alert("Invalid Amount. Please enter numbers only");
+        return false;
+    }
+}
+</script>
+
+
 
                       <div class="row">
                         <div class="form-group">

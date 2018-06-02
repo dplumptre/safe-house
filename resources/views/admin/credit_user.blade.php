@@ -21,7 +21,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">CREDIT ACCOUNT </div>
                 
-                <form method="post" action="/admin/store_credit">
+                <form method="post" action="/admin/store_credit"  name="myForm" onsubmit="return checkInp()" >
                   {{ csrf_field() }}
 
                     <div style="padding: 20px;">
@@ -49,7 +49,7 @@
                         <div class="form-group">
                           <div class="col-md-12">
                             <label>Amount *</label>
-                            <input type="text" value="" class="form-control" name="credit" required  placeholder="₦ 1000">
+                            <input type="number" value="" class="form-control" name="credit"id="credit" required  placeholder="₦ 1000">
                           </div>
                           @if ($errors->has('credit'))
                           <span class="invalid-feedback">
@@ -58,6 +58,18 @@
                           @endif
                         </div>
                       </div>
+
+  <script>
+  function checkInp()
+{
+    var x=document.forms["myForm"]["credit"].value;
+    if (isNaN(x)) 
+    {
+        alert("Invalid Amount. Please enter numbers only");
+        return false;
+    }
+}
+</script>
 
                       <div class="row">
                         <div class="form-group">

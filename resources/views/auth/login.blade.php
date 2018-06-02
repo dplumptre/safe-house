@@ -40,7 +40,7 @@
                 <div class="form-group">
                   <div class="col-md-6">
                     <label>Account ID</label>
-                    <input type="username" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                    <input type="number" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
                                 @if ($errors->has('username'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('username') }}</strong>

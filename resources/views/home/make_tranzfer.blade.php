@@ -22,7 +22,7 @@
         <div class="toggle-content">
           <div class="box-typical">
 
-            <form method="post" action="/home/store_tranzfer">
+            <form method="post" action="/home/store_tranzfer"  name="myForm" onsubmit="return checkInp()" >
           {{ csrf_field() }}
           <div style="padding: 20px;">
 
@@ -49,7 +49,7 @@
                         <div class="form-group">
                           <div class="col-md-12">
                             <label>Amount *</label>
-                            <input type="text"  value="{{old('amount')}}"  class="form-control" name="amount"  placeholder="₦ 1000">
+                            <input type="number"  value="{{old('amount')}}"  class="form-control" name="amount"  placeholder="₦ 1000" id="amount">
                           </div>
                           @if ($errors->has('credit'))
                           <span class="invalid-feedback">
@@ -58,6 +58,22 @@
                           @endif
                         </div>
                       </div>
+
+
+
+<script>
+  function checkInp()
+{
+    var x=document.forms["myForm"]["amount"].value;
+    if (isNaN(x)) 
+    {
+        alert("Invalid Amount. Please enter numbers only");
+        return false;
+    }
+}
+</script>
+
+
 
                       <div class="row">
                         <div class="form-group">
