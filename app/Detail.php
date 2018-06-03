@@ -17,5 +17,10 @@ class Detail extends Model
     }
 
 
+    public function isProfileUpdated($user_id)
+    {
+        return $this->where('user_id',$user_id)->get()->count();
+    }
+
 
 }

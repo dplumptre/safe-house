@@ -33,7 +33,7 @@
                         <img src="img/profile.png" alt=""> 
                    @endif
                   </li>
-
+<hr>
                     <li class="acctdetails"> 
                     <h4>ID CARD</h4>
                     @if($card->checkIdcard($user->id) > 0)

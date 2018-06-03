@@ -63,16 +63,21 @@ class HomeController extends Controller
     public function edit_profile()
     {
 
-          $user_id = $this->loggedin_user()->id;  
-          $user = Detail::where('user_id', $user_id)->first();
-          $check = Detail::where('user_id', $user_id)->count();
+        $user = $this->loggedin_user();
+        
+        //   $user_id = $this->loggedin_user()->id;  
+        //   $user = Detail::where('user_id', $user_id)->first();
+           $check = Detail::where('user_id', $user->id)->count();
           
-          if ($check > 0) {
-            return redirect('home/update_profile');
-          }
-          else{
-            return view('home.edit_profile');
-          }
+           if ($check > 0) {
+             return redirect('home/update_profile');
+           }
+        //   else{
+        //     return view('home.edit_profile');
+        //   }
+
+          return view('home.edit_profile',compact('user'));
+
     }
 
 
@@ -94,14 +99,13 @@ class HomeController extends Controller
         $profile->dob = $request->dob;
         $profile->employment_status = $request->employment_status;
         $profile->address = $request->address;
-        $profile->passport = NULL;
-        $profile->idcard = NULL;
 
         if ($profile->save()) {
 
           $request->session()->flash('message.content', 'Profile Updated Successfully!');
           $request->session()->flash('message.level', 'success');
-          return redirect('home/update_profile');
+
+          return redirect()->route('home.update_profile');
 
           $user = Detail::where('user_id', $user->id)->first();
           return view('home.update_profile', compact('user'));

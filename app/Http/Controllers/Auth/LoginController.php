@@ -29,11 +29,11 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'home/update_profile';
 
     protected $toAdmin ='admin/dashboard';
 
-    protected $toHome ='/home';
+    protected $toHome ='home';
     /**
      * Create a new controller instance.
      *

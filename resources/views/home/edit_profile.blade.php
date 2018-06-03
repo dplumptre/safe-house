@@ -2,13 +2,12 @@
 @section('content')
 
 <div role="main" class="main">
-    <div class="container">
-        @include('layouts.home_menu')
+  <div class="container">
+    @include('layouts.home_menu')
       
-        <div class="col-md-6">
-          <div class="toggle" data-plugin-toggle data-plugin-options='{ "isAccordion": true }'>
-
-@include('layouts.partials.errors')
+    <div class="col-md-6">
+      <div class="toggle" data-plugin-toggle data-plugin-options='{ "isAccordion": true }'>
+            @include('layouts.partials.errors')  
             
            <section class="toggle active">
               <label>Edit Profile</label>
@@ -43,13 +42,17 @@
 
  </div>
 
-</form>
-                  </div></div>
-            </section>
-          </div>
-          <div class="clear clearfix"></div>
-        </div>
+ </form>
+ </div></div>
+</section>
+</div>
+<div class="clear clearfix"></div>
+</div>
+</div>
+</div>
 @endsection
+
+
 
 
 
