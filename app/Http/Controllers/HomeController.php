@@ -94,6 +94,8 @@ class HomeController extends Controller
         $profile->dob = $request->dob;
         $profile->employment_status = $request->employment_status;
         $profile->address = $request->address;
+        $profile->passport = NULL;
+        $profile->idcard = NULL;
 
         if ($profile->save()) {
 
@@ -319,6 +321,7 @@ public function store_tranzfer(Request $request)
         $total_credit = $user_transactions->sum('credit');
         $total_debit  = $user_transactions->sum('debit');
         $account_balance = $total_credit - $total_debit;
+        $total_transfer = $user_transactions->sum('transaction_type_id');
        
         $amount = $request->amount;
       
@@ -337,28 +340,74 @@ public function store_tranzfer(Request $request)
         $request->session()->flash('message.level', 'danger');
         return view('home/make_tranzfer', compact('users'));
     }
+
     elseif ($transaction == "" || $transaction == NULL){
         $users = User::where('username', '=', $account_no)->first();
         $request->Session()->flash('message.content', 'Please enter a narration for this transfer');
         $request->session()->flash('message.level', 'danger');
         return view('home/make_tranzfer', compact('users'));
     }
-    else{
-       
+
+    elseif ($total_transfer > 12){
+
+        //DEBIT PART
             $transferFrom = new Transaction;
             $transferFrom->user_id = Auth::user()->id;
             $transferFrom->debit = $amount;
+            $transferFrom->credit = 0;
+            $transferFrom->transaction_type_id = 3;
             $transferFrom->transaction = $request->transaction;
+            $transferFrom->status = "Pending";
+
+        if ($transferFrom->save()) {
+        
+            $request->Session()->flash('message.content', 'PENDING TRANSFER: Your transfer is Pending. Please contact the Administrator!');
+            $request->session()->flash('message.level', 'danger');
+
+            //CREDIT PART
+            $transferTo = new Transaction;
+            $transferTo->user_id = $request->user_id;
+            $transferTo->credit = 0;
+            $transferTo->debit = 0;
+            $transferTo->transaction_type_id = 3;
+            $transferTo->transaction = $request->transaction;
+            $transferTo->status = "Pending";
+
+            $transferTo->save();
+        }
+
+
+
+        // $users = User::where('username', '=', $account_no)->first();
+        // $request->Session()->flash('message.content', 'Please enter a narration for this transfer');
+        // $request->session()->flash('message.level', 'danger');
+        // return view('home/make_tranzfer', compact('users'));
+    }
+
+    else{
+
+            //DEBIT PART
+            $transferFrom = new Transaction;
+            $transferFrom->user_id = Auth::user()->id;
+            $transferFrom->debit = $amount;
+            $transferFrom->credit = 0;
+            $transferFrom->transaction_type_id = 3;
+            $transferFrom->transaction = $request->transaction;
+            $transferFrom->status = "Successful";
 
         if ($transferFrom->save()) {
         
             $request->Session()->flash('message.content', 'Your transfer was successful!');
             $request->session()->flash('message.level', 'success');
 
+            //CREDIT PART
             $transferTo = new Transaction;
             $transferTo->user_id = $request->user_id;
             $transferTo->credit = $request->amount;
+            $transferTo->debit = 0;
+            $transferTo->transaction_type_id = 3;
             $transferTo->transaction = $request->transaction;
+            $transferTo->status = "Successful";
 
             $transferTo->save();
         }

@@ -43,10 +43,10 @@
                         <img src="img/idcard.jpeg" alt=""> 
                    @endif
 
-                  <li class="acctdetails"> <img src="img/team/arthur-isiko-managing-director.jpg" alt=""> </li>
+                  <li class="acctdetails"> </li>
                     <li> <i class="fa fa-cards"></i> <strong>Account Number:</strong> {{$user->username}}</li>
                     <li> <i class="fa fa-user"></i> <strong>Account Name:</strong> {{$user->name}}</li>
-                    <li> <i class="fa fa-phone"></i> <strong>Phone:</strong> {{$user->details->mobile}}</li>
+                   
                     <li> <i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="#">{{$user->email}}</a> </li>
                     <li class="acctdetails"> 
                   </ul>

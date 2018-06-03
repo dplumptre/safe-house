@@ -25,6 +25,7 @@
 <td>Transactions</td>
 <td>Credit</td>
 <td>Debit</td>
+<td>Status</td>
 </tr>
 
 @php 
@@ -33,10 +34,20 @@ $drb =0;
 @endphp
 @foreach($data as $d)
 <tr>
-<td>{{$d->created_at}}</td>
+<td><small>{{$d->created_at}}</small></td>
 <td>{{ $d->transaction}}</td>
 <td class="text-success">  ₦ {{ number_format($d->credit, 2)}}</td>
 <td class="text-danger"> - ₦ {{ number_format($d->debit, 2)}}</td>
+<td> 
+  @if($d->status == "Successful")
+    <span class="text-success"> {{ $d->status}} </span>
+  @else
+    <span class="text-danger"> {{ $d->status}} </span>
+
+  @endif
+
+
+  </td>
 </tr>
 <?php
 $crd +=   $d->credit;

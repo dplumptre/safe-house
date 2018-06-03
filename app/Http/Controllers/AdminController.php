@@ -107,6 +107,8 @@ public function store_transfer(Request $request)
 
         // CHECK USER ACCOUNT BALANCE
         $user_transactions = Transaction::where('user_id', Auth::user()->id)->get();
+      
+
         $total_credit = $user_transactions->sum('credit');
         $total_debit  = $user_transactions->sum('debit');
         $account_balance = $total_credit - $total_debit;
@@ -134,21 +136,28 @@ public function store_transfer(Request $request)
         return view('admin/make_transfer', compact('users'));
     }
     else{
-       
+            //DEBIT PART
             $transferFrom = new Transaction;
             $transferFrom->user_id = Auth::user()->id;
             $transferFrom->debit = $amount;
+            $transferFrom->credit = 0;
+            $transferFrom->transaction_type_id = 3;
             $transferFrom->transaction = $request->transaction;
+            $transferFrom->status = "Successful";
 
         if ($transferFrom->save()) {
         
             $request->Session()->flash('message.content', 'Your transfer was successful!');
             $request->session()->flash('message.level', 'success');
-
+            
+            //CREDIT PART
             $transferTo = new Transaction;
             $transferTo->user_id = $request->user_id;
             $transferTo->credit = $request->amount;
+            $transferTo->debit = 0;
+            $transferTo->transaction_type_id = 3;
             $transferTo->transaction = $request->transaction;
+            $transferTo->status = "Successful";
 
             $transferTo->save();
         }
@@ -181,6 +190,8 @@ public function store_transfer(Request $request)
         $credit = new Transaction;
         $credit->user_id = $request->user_id;
         $credit->credit = $request->credit;
+        $credit->debit = 0;
+        $credit->transaction_type_id = 1;
         $credit->transaction = $request->transaction;
 
         if ($credit->save()) {
@@ -216,6 +227,8 @@ public function store_transfer(Request $request)
         $debit = new Transaction;
         $debit->user_id = $request->user_id;
         $debit->debit = $request->debit;
+        $debit->credit = 0;
+        $debit->transaction_type_id = 2;
         $debit->transaction = $request->transaction;
 
         if ($debit->save()) {

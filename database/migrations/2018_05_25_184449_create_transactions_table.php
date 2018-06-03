@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->string('transaction');
             $table->string('credit');
             $table->string('debit');
+            $table->integer('transaction_type_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

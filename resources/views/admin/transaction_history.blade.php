@@ -57,16 +57,28 @@
 
     </tr>
 @endforeach
-
-                                     <tr>
-                                        <th>Total</th>
-                                        <th><h6 class="text-danger"> ₦ <?php echo number_format($total_debit, 2); ?></h6></th>
-                                        <th><h6 class="text-success"> ₦ <?php echo number_format($total_credit, 2); ?></h6></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
     
 </tbody>
+</table>
+
+
+
+
+
+
+ <table  class="table table-hover" width="100%">
+                                
+<div style="padding-top: 30px;">
+    <tr>
+        <th>Total</th>
+        <th>Debits: <h6 class="text-danger"> ₦ <?php echo number_format($total_debit, 2); ?></h6></th>
+        <th>Credits <h6 class="text-success"> ₦ <?php echo number_format($total_credit, 2); ?></h6></th>
+        <th></th>
+        <th></th>
+       
+    </tr>
+</div>
+    
 </table>
 
 

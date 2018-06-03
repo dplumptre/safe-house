@@ -21,7 +21,7 @@
                     <p> <a href="/home/transfer" > <i class="fa fa-cloud-download"></i> Transfer Funds</a> </p>
                     <p> <a href="{{ route('home.edit_profile')}}"> <i class="fa fa-binoculars"></i> Edit Profile</a> </p>
                     <p> <a href="{{ route('home.e_i')}}"> <i class="fa fa-binoculars"></i> Edit Id Card</a></p>
-                    <p> <a href="{{ route('home.e_pic')}}"> <i class="fa fa-binoculars"></i> Edit Picture</a> </p>
+                    <p> <a href="{{ route('home.e_pic')}}"> <i class="fa fa-binoculars"></i> Edit Passport</a> </p>
                   </div>
                   <div class="tab-pane" id="recentPosts">
                     <ul class="list-unstyled">
