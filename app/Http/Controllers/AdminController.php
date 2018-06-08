@@ -193,6 +193,7 @@ public function store_transfer(Request $request)
         $credit->debit = 0;
         $credit->transaction_type_id = 1;
         $credit->transaction = $request->transaction;
+        $credit->status = "Successful";
 
         if ($credit->save()) {
         
@@ -230,6 +231,7 @@ public function store_transfer(Request $request)
         $debit->credit = 0;
         $debit->transaction_type_id = 2;
         $debit->transaction = $request->transaction;
+        $debit->status = "Successful";
 
         if ($debit->save()) {
         

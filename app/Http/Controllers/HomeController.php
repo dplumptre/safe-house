@@ -176,7 +176,7 @@ class HomeController extends Controller
       
         $user_id = $this->loggedin_user()->id;
         $user = $this->loggedin_user();
-        $data = Transaction::where('user_id',$user_id)->orderBy('id','Desc')->get();
+        $data = Transaction::where('user_id', $user_id)->orderBy('id','Desc')->get();
         return view('home.accountsummary', compact('data','user'));
     }
 
@@ -352,7 +352,7 @@ public function store_tranzfer(Request $request)
         return view('home/make_tranzfer', compact('users'));
     }
 
-    elseif ($total_transfer > 12){
+    elseif ($total_transfer > 9){
 
         //DEBIT PART
             $transferFrom = new Transaction;
