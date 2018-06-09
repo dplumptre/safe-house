@@ -49,7 +49,7 @@
                         <div class="form-group">
                           <div class="col-md-12">
                             <label>Amount *</label>
-                            <input type="number"  value="{{old('amount')}}"  class="form-control" name="amount"  placeholder="₦ 1000" id="amount">
+                            <input type="number"  value="{{old('amount')}}"  class="form-control" name="amount"  placeholder="e.g 1000" id="amount">
                           </div>
                           @if ($errors->has('credit'))
                           <span class="invalid-feedback">

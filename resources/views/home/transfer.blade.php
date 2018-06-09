@@ -47,7 +47,9 @@
               <div class="toggle-content">
                 <div class="box-typical">
                   <p>Make a one-off transfer between your accounts</p>
-                  <form>
+                 
+                 <form method="post" action="/home/store_tranzfer"  name="myForm" onsubmit="return checkInp()" >
+   {{ csrf_field() }}
                     <input type="hidden" value="true" name="emailSent" id="emailSent">
                     <div class="row">
                       <div class="form-group">
@@ -55,7 +57,7 @@
                           <label>From Account *</label>
                           <select class="form-control" name="subject" required>
                             <option value="Select Account">Select Account</option>
-                            <option value="">{{Auth::user()->username}} - {{Auth::user()->name}}</option>
+                            <option value="{{Auth::user()->username}} ">{{Auth::user()->username}} - {{Auth::user()->name}}</option>
                           </select>
                         </div>
                       </div>
@@ -110,10 +112,21 @@
                       <div class="form-group">
                         <div class="col-md-12">
                           <label>Amount *</label>
-                          <input type="text" value="" class="form-control" name="name" required>
+                          <input type="text" value="" class="form-control" name="amount" required>
                         </div>
                       </div>
                     </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <label>Naration *</label>
+                            <textarea class="input-md  textinput textInput form-control"  name="transaction" type="text" value="{{old('transaction')}}" required></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" readonly>
                     
                     <div class="row">
                       <div class="col-md-12">

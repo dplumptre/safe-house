@@ -32,52 +32,54 @@
                                         <th>Reg Date</th>
                                         <th>Status</th>
                                         <th>Action</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                   <?php $rows = 0; ?> 
-                <tbody>
-            @foreach($users as $user)
-                    <tr>
-                        <td>{{$rows = $rows + 1 }}</td>
-                        <td>{{ $user->name }} </td>
-                        <td> {{ $user->username }}</td>
-                        <td>{{ $user->created_at }} </td>
+                                  <tbody>
+                                    @foreach($users as $user)
+                                    <tr>
+                                        <td>{{$rows = $rows + 1 }}</td>
+                                        <td>{{ $user->name }} </td>
+                                        <td> {{ $user->username }}</td>
+                                        <td>{{ $user->created_at }} </td>
 
 
-<td>
- @if($user->status == "1")
-    <span class="fa fa-icon fa-check-circle" style="color: green">
-</td>
-@endif
+                                        <td>
+                                           @if($user->status == "1")
+                                     <span class="fa fa-icon fa-check-circle" style="color: green">
+                                    
+                                           </td>
+                                           @endif
 
-<td>
-    @if($user->status != "1")
- <form class="form-inline" method="post" action="/admin/verify/{{$user->id}}">
-        {{ csrf_field() }}
-        {{ method_field('PATCH') }}
+                                           <td>
+                                            @if($user->status != "1")
+                                            <form class="form-inline" method="post" action="/admin/verify/{{$user->id}}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PATCH') }}
 
-        <div class="col-md-6">
-            <small>
-              <div class="input-select">
-                <select name="status">
-                  <option selected="" value="">-- Select --</option>
-                    <option value="1">Activate</option>
-                    <option value="0">Pending</option>
-                </select>
-            </div>
-        </small>
-        </div>
-        <div class="col-md-4">
-      <button type="submit" class="btn btn-primary btn-xs">Activate</button>
-        </div>
-    </form>
-@endif
-</td>
-
-    </tr>
-    
-@endforeach
-</tbody>
+                                                <div class="col-md-6">
+                                                    <small>
+                                                      <div class="input-select">
+                                                        <select name="status">
+                                                          <option selected="" value="">-- Select --</option>
+                                                          <option value="1">Activate</option>
+                                                          <option value="0">Pending</option>
+                                                      </select>
+                                                  </div>
+                                              </small>
+                                          </div>
+                                          <div class="col-md-4">
+                                              <button type="submit" class="btn btn-primary btn-xs">Activate</button>
+                                          </div>
+                                      </form>
+                                      @endif
+                                  </td>
+            <td> <a href="/admin/delete_user/{{$user->id}}" onclick="javascript:return confirm('Are you sure yoi want to delete user?')"  data-toggle="tooltip" title="Delete User"> <span class="fa fa-icon fa-trash" style="color: red"> </a>  </td>
+                              </tr>
+                              
+                              @endforeach
+                          </tbody>
 </table>
 
 

@@ -53,6 +53,14 @@ class AdminController extends Controller
         return view('admin/transactions', compact('users'));
     }
 
+    public function transaction_status()
+    {
+        $transactions = Transaction::orderBy('status', 'asc')->orderBy('created_at', 'desc')->get();
+        // 
+        // $transactions = Transaction::with('user')->orderBy('user_id')->groupBy('user_id')->get();
+        return view('admin/transaction_status', compact('transactions'));
+    }
+
 
     public function transaction_history($id)
     {
@@ -358,7 +366,31 @@ public function store_transfer(Request $request)
     }
 
 
+    public function activate(Request $request, Transaction $tran_status)
+    {
 
+        $this->validate($request, [
+            'status' => 'required',
+        ]);
+
+        $tran_status->status = $request->status;
+        
+        $tran_status->update();
+        $request->Session()->flash('message.content', 'Transaction status was successfully updated!');
+        $request->session()->flash('message.level', 'success');
+        return back();
+
+    }
+
+
+
+
+    public function delete_user(User $user){
+            //$users = User::find($user);
+
+        $user->delete($user);
+        return back();
+    }
 
 
 

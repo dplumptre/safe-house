@@ -31,7 +31,7 @@
 <div class="col-md-9">
  @include('layouts.partials.errors')
     <div class="panel panel-default">
-        <div class="panel-heading"> <?php echo strToUpper($transactions[0]->user->name) ;?> TRANSACTION HISTORY <h4 class="text-success" style="float: right"> Balance: ₦ <?php echo number_format($account_balance, 2); ?></div>
+        <div class="panel-heading"> <?php echo strToUpper($transactions[0]->user->name) ;?> TRANSACTION HISTORY <h4 class="text-success" style="float: right"> Balance:  <?php echo number_format($account_balance, 2); ?></div>
         <div class="panel-body" align="center">
 
             <table  id="myTable"  class="table table-hover" width="100%">
@@ -50,8 +50,8 @@
             @foreach($transactions as $transaction)
                     <tr>
                         <td>{{$rows = $rows + 1 }}</td>
-                        <td class="text-danger">  - ₦ <?php echo number_format($transaction->debit, 2); ?></td>
-                        <td class="text-success">  ₦ <?php echo number_format($transaction->credit, 2); ?></td>
+                        <td class="text-danger">  -  <?php echo number_format($transaction->debit, 2); ?></td>
+                        <td class="text-success">   <?php echo number_format($transaction->credit, 2); ?></td>
                         <td>{{ $transaction->transaction }} </td>
     <td> <small>{{ date('d-M-Y m:s', strtotime($transaction->created_at)) }} </small></td>
 
@@ -71,8 +71,8 @@
 <div style="padding-top: 30px;">
     <tr>
         <th>Total</th>
-        <th>Debits: <h6 class="text-danger"> ₦ <?php echo number_format($total_debit, 2); ?></h6></th>
-        <th>Credits <h6 class="text-success"> ₦ <?php echo number_format($total_credit, 2); ?></h6></th>
+        <th>Debits: <h6 class="text-danger">  <?php echo number_format($total_debit, 2); ?></h6></th>
+        <th>Credits <h6 class="text-success">  <?php echo number_format($total_credit, 2); ?></h6></th>
         <th></th>
         <th></th>
        

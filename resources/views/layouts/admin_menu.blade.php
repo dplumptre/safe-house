@@ -4,6 +4,7 @@
 	<li class="list-group-item"><a href="{{ route('all_users')}}">All users</a></li>
 	<li class="list-group-item"><a href="{{ route('online_users')}}" >Online Users</a></li>
 	<li class="list-group-item"><a href="{{ route('transactions')}}" >Credit / Debit </a></li>
+	<li class="list-group-item"><a href="{{ route('transaction_status')}}" >Transactions </a></li>
 	<li class="list-group-item"><a href="{{ route('transfer')}}" >Quick Transfer</a></li>
 </ul>
 @else

@@ -36,8 +36,8 @@ $drb =0;
 <tr>
 <td><small>{{$d->created_at}}</small></td>
 <td>{{ $d->transaction}}</td>
-<td class="text-success">  ₦ {{ number_format($d->credit, 2)}}</td>
-<td class="text-danger"> - ₦ {{ number_format($d->debit, 2)}}</td>
+<td class="text-success">   {{ number_format($d->credit, 2)}}</td>
+<td class="text-danger"> -  {{ number_format($d->debit, 2)}}</td>
 <td> 
   @if($d->status == "Successful")
     <span class="text-success"> {{ $d->status}} </span>
@@ -59,7 +59,7 @@ $drb  +=   $d->debit;
 
 
 <div class="well">
-TOTAL : <strong class="text-success"> ₦ {{ number_format($total, 2) }}</strong>
+TOTAL : <strong class="text-success">  {{ number_format($total, 2) }}</strong>
 </div>
 <form action="{{ route('logout')}}"  method='POST'>
 {{ csrf_field() }}

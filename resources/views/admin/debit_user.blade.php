@@ -49,7 +49,7 @@
                         <div class="form-group">
                           <div class="col-md-12">
                             <label>Amount *</label>
-                            <input type="number" value="" class="form-control" name="debit" id="debit" required  placeholder="₦ 1000">
+                            <input type="number" value="" class="form-control" name="debit" id="debit" required  placeholder="e.g 1000">
                           </div>
                           @if ($errors->has('credit'))
                           <span class="invalid-feedback">

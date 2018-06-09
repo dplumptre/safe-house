@@ -60,7 +60,7 @@
                     <td><a href="/admin/credit_user/{{$user->id}}">Credit</a></td>
                     <td><a   class="text-danger" href="/admin/debit_user/{{$user->id}}">Debit</a></td>
                     <td> <a href="/admin/transaction_history/{{$user->id}}">View</a> </td>
-                    <td>₦ <?php echo account_balance($user->id) ;?> </td>
+                    <td> <?php echo number_format(account_balance($user->id), 2); ?> </td>
                     
 
                 </tr>
@@ -76,7 +76,7 @@
 
 
 
-
+</div>
 
 </div> 
 <!-- Container End -->

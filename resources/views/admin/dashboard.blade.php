@@ -33,18 +33,18 @@
                 <div style="padding: 20px;">
                   <ul class="list-unstyled">
                     <li class="text-muted"> Bank Account </li>
-                    <li> Credit Line <strong class="pull-right  text-success">₦ <?php echo number_format($total_credit, 2); ?> 
+                    <li> Credit Line <strong class="pull-right  text-success"> <?php echo number_format($total_credit, 2); ?> 
                 </strong> </li>
                   </ul>
                   <hr class="short">
                   <ul class="list-unstyled">
                     <li class="text-muted"> Bank Account </li>
-                    <li> Debit Line <strong class="pull-right text-danger">- ₦ <?php echo number_format($total_debit, 2); ?> </strong> </li>
+                    <li> Debit Line <strong class="pull-right text-danger">-  <?php echo number_format($total_debit, 2); ?> </strong> </li>
                   </ul>
                   <hr class="short">
                   <ul class="list-unstyled">
                     <li class="text-muted"> Bank Account </li>
-                    <li> Total Balance <strong class="pull-right"> <h4> ₦ <?php echo number_format($balance_sheet, 2); ?></h4> </strong> </li>
+                    <li> Total Balance <strong class="pull-right"> <h4>  <?php echo number_format($balance_sheet, 2); ?></h4> </strong> </li>
                   </ul>
               </div>
 

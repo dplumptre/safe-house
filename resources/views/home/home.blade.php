@@ -13,7 +13,7 @@
                 <div class="box-typical">
    
 
-                Available Balance: <span class="text-success"> <strong>₦  {{ $bal }}</strong></span>
+                Available Balance: <span class="text-success"> <strong>  {{ $bal }}</strong></span>
 
 
                   </div></div>

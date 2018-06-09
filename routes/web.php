@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/online_users', 'AdminController@online_users')->name('online_users');
     Route::get('/transactions', 'AdminController@transactions')->name('transactions');
     Route::get('/transaction_history/{id}', 'AdminController@transaction_history')->name('transaction_history');
+    Route::get('/transaction_status', 'AdminController@transaction_status')->name('transaction_status');
 
 
     Route::get('/transfer', 'AdminController@transfer')->name('transfer');
@@ -64,13 +65,16 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/store_credit', 'AdminController@store_credit');
 
     Route::get('/debit_user/{id}', 'AdminController@debit_user')->name('debit_user');
-	Route::post('/store_debit', 'AdminController@store_debit');
+    Route::post('/store_debit', 'AdminController@store_debit');
+
+    Route::get('/delete_user/{user}', 'AdminController@delete_user')->name('delete_user');
 
  //    Route::post('/search', 'AdminController@search')->name('search');    
  //    Route::get('/debit_user', 'AdminController@debit_user')->name('debit_user');
 	// Route::post('/debit_account', 'AdminController@debit_account');
 
     Route::patch('/verify/{account_status}', 'AdminController@verify')->name('verify');
+    Route::patch('/activate/{tran_status}', 'AdminController@activate')->name('activate');
 });
 
 
